@@ -17,7 +17,7 @@ vars:
   test_name: "grc_proiel-ud-test"
   package_name: "ud_proiel"
   package_version: "3.4.0"
-  gpu: -1
+  gpu: 0
 
 # These are the directories that the project needs. The project CLI will make
 # sure that they always exist.
