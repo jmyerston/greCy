@@ -43,9 +43,15 @@ workflows:
     - train-small
     - train-medium
     - train-large
+    - train-transformer
+    - evaluate-small
+    - evaluate-medium
+    - evaluate-large
+    - evaluate-transformer
     - package-small
     - package-medium
     - package-large
+    - package-transformer
 
 commands:
 
@@ -163,6 +169,21 @@ commands:
       - "training/transformer/${vars.treebank}/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.package_name}_trf-${vars.package_version}/dist/grc_${vars.package_name}config_trf-${vars.package_version}.tar.gz"
+  
+  - name: evaluate-small
+    help: "Evaluate on the test data and save the metrics"
+    script:
+      - "python -m spacy evaluate ./training/small/${vars.treebank}/model-best ./corpus/${vars.treebank}/test.spacy --output ./metrics/small/${vars.treebank}_lg.json --gpu-id ${vars.gpu}"
+    deps:
+      - "training/small/${vars.treebank}/model-best"
+      - "corpus/${vars.treebank}/test.spacy"
+  - name: evaluate-medium
+    help: "Evaluate on the test data and save the metrics"
+    script:
+      - "python -m spacy evaluate ./training/medium/${vars.treebank}/model-best ./corpus/${vars.treebank}/test.spacy --output ./metrics/medium/${vars.treebank}_lg.json --gpu-id ${vars.gpu}"
+    deps:
+      - "training/medium/${vars.treebank}/model-best"
+      - "corpus/${vars.treebank}/test.spacy"
 
   - name: evaluate-large
     help: "Evaluate on the test data and save the metrics"
