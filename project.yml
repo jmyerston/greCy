@@ -90,20 +90,20 @@ commands:
     help: "Train ${vars.treebank}"
     script:
       - "mkdir -p training/small"
-      - "python -m spacy train configs/${vars.config_sm}.cfg --output training/small/${vars.treebank} --gpu-id ${vars.gpu} --paths.train corpus/${vars.treebank}/train.spacy --paths.dev corpus/${vars.treebank}/dev.spacy --nlp.lang=${vars.lang}"
+      - "python -m spacy train configs/${vars.config_sm}.cfg --output training/small --gpu-id ${vars.gpu} --paths.train corpus/${vars.treebank}/train.spacy --paths.dev corpus/${vars.treebank}/dev.spacy --nlp.lang=${vars.lang}"
     deps:
       - "corpus/${vars.treebank}/train.spacy"
       - "corpus/${vars.treebank}/dev.spacy"
       - "configs/${vars.config_sm}.cfg"
     outputs:
-      - "training/small/${vars.treebank}/model-best"
+      - "training/small"
 
   - name: package-small
     help: "Package the trained model so it can be installed"
     script:
-      - "python -m spacy package training/small/${vars.treebank}/model-best packages --name ${vars.package_name}_sm --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/small/model-best packages --name ${vars.package_name}_sm --version ${vars.package_version} --build wheel --force"
     deps:
-      - "training/small/${vars.treebank}/model-best"
+      - "training/small/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.package_name}_sm-${vars.package_version}/dist/grc_${vars.package_name}config_sm-${vars.package_version}.tar.gz"
 
@@ -111,20 +111,20 @@ commands:
     help: "Train ${vars.treebank}"
     script:
       - "mkdir -p training/medium"
-      - "python -m spacy train configs/${vars.config_md}.cfg --output training/medium/${vars.treebank} --gpu-id ${vars.gpu} --paths.train corpus/${vars.treebank}/train.spacy --paths.dev corpus/${vars.treebank}/dev.spacy  --paths.vectors/vectors/medium --nlp.lang=${vars.lang}"
+      - "python -m spacy train configs/${vars.config_md}.cfg --output training/medium --gpu-id ${vars.gpu} --paths.train corpus/${vars.treebank}/train.spacy --paths.dev corpus/${vars.treebank}/dev.spacy  --paths.vectors/vectors/medium --nlp.lang=${vars.lang}"
     deps:
       - "corpus/${vars.treebank}/train.spacy"
       - "corpus/${vars.treebank}/dev.spacy"
       - "configs/${vars.config_md}.cfg"
     outputs:
-      - "training/medium/${vars.treebank}/model-best"
+      - "training/medium"
 
   - name: package-medium
     help: "Package the trained model so it can be installed"
     script:
-      - "python -m spacy package training/medium/${vars.treebank}/model-best packages --name ${vars.package_name}_md --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/medium/model-best packages --name ${vars.package_name}_md --version ${vars.package_version} --build wheel --force"
     deps:
-      - "training/medium/${vars.treebank}/model-best"
+      - "training/medium/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.package_name}_md-${vars.package_version}/dist/grc_${vars.package_name}config_md-${vars.package_version}.tar.gz"
 
@@ -132,20 +132,20 @@ commands:
     help: "Train ${vars.treebank}"
     script:
       - "mkdir -p training/large"
-      - "python -m spacy train configs/${vars.config_lg}.cfg --output training/large/${vars.treebank} --gpu-id ${vars.gpu} --paths.train corpus/${vars.treebank}/train.spacy --paths.dev corpus/${vars.treebank}/dev.spacy --paths.vectors/vectors/large --nlp.lang=${vars.lang}"
+      - "python -m spacy train configs/${vars.config_lg}.cfg --output training/large --gpu-id ${vars.gpu} --paths.train corpus/${vars.treebank}/train.spacy --paths.dev corpus/${vars.treebank}/dev.spacy --paths.vectors/vectors/large --nlp.lang=${vars.lang}"
     deps:
       - "corpus/${vars.treebank}/train.spacy"
       - "corpus/${vars.treebank}/dev.spacy"
       - "configs/${vars.config_lg}.cfg"
     outputs:
-      - "training/large/${vars.treebank}/model-best"
+      - "training/large"
 
   - name: package-large
     help: "Package the trained model so it can be installed"
     script:
-      - "python -m spacy package training/large/${vars.treebank}/model-best packages --name ${vars.package_name}_lg --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/large/model-best packages --name ${vars.package_name}_lg --version ${vars.package_version} --build wheel --force"
     deps:
-      - "training/large/${vars.treebank}/model-best"
+      - "training/large/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.package_name}_lg-${vars.package_version}/dist/grc_${vars.package_name}config_lg-${vars.package_version}.tar.gz"
 
@@ -153,57 +153,58 @@ commands:
     help: "Train ${vars.treebank}"
     script:
       - "mkdir -p training/transformer"
-      - "python -m spacy train configs/${vars.config_trf}.cfg --output training/transformer/${vars.treebank} --gpu-id ${vars.gpu} --paths.train corpus/${vars.treebank}/train.spacy --paths.dev corpus/${vars.treebank}/dev.spacy --nlp.lang=${vars.lang}"
+      - "python -m spacy train configs/${vars.config_trf}.cfg --output training/transformer --gpu-id ${vars.gpu} --paths.train corpus/${vars.treebank}/train.spacy --paths.dev corpus/${vars.treebank}/dev.spacy --nlp.lang=${vars.lang}"
     deps:
       - "corpus/${vars.treebank}/train.spacy"
       - "corpus/${vars.treebank}/dev.spacy"
       - "configs/${vars.config_trf}.cfg"
     outputs:
-      - "training/transformer/${vars.treebank}/model-best"
+      - "training/transformer"
 
   - name: package-transformer
     help: "Package the trained model so it can be installed"
     script:
-      - "python -m spacy package training/transformer/${vars.treebank}/model-best packages --name ${vars.package_name}_trf --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/transformer/model-best packages --name ${vars.package_name}_trf --version ${vars.package_version} --build wheel --force"
     deps:
-      - "training/transformer/${vars.treebank}/model-best"
+      - "training/transformer/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.package_name}_trf-${vars.package_version}/dist/grc_${vars.package_name}config_trf-${vars.package_version}.tar.gz"
   
   - name: evaluate-small
     help: "Evaluate on the test data and save the metrics"
     script:
-      - "python -m spacy evaluate ./training/small/${vars.treebank}/model-best ./corpus/${vars.treebank}/test.spacy --output ./metrics/small/${vars.treebank}_lg.json --gpu-id ${vars.gpu}"
+      - "python -m spacy evaluate ./training/small/model-best ./corpus/${vars.treebank}/test.spacy --output ./training/small/model-best/accuracy.json --gpu-id ${vars.gpu}"
     deps:
-      - "training/small/${vars.treebank}/model-best"
+      - "training/small/model-best"
       - "corpus/${vars.treebank}/test.spacy"
+
   - name: evaluate-medium
     help: "Evaluate on the test data and save the metrics"
     script:
-      - "python -m spacy evaluate ./training/medium/${vars.treebank}/model-best ./corpus/${vars.treebank}/test.spacy --output ./metrics/medium/${vars.treebank}_lg.json --gpu-id ${vars.gpu}"
+      - "python -m spacy evaluate ./training/medium/model-best ./corpus/${vars.treebank}/test.spacy --output ./training/medium/model-best/accuracy.json --gpu-id ${vars.gpu}"
     deps:
-      - "training/medium/${vars.treebank}/model-best"
+      - "training/medium/model-best"
       - "corpus/${vars.treebank}/test.spacy"
 
   - name: evaluate-large
     help: "Evaluate on the test data and save the metrics"
     script:
-      - "python -m spacy evaluate ./training/large/${vars.treebank}/model-best ./corpus/${vars.treebank}/test.spacy --output ./metrics/large/${vars.treebank}_lg.json --gpu-id ${vars.gpu}"
+      - "python -m spacy evaluate ./training/large/model-best ./corpus/${vars.treebank}/test.spacy --output ./training/large/model-best/accuracy.json --gpu-id ${vars.gpu}"
     deps:
-      - "training/large/${vars.treebank}/model-best"
+      - "training/large/model-best"
       - "corpus/${vars.treebank}/test.spacy"
     outputs:
-      - "metrics/large/${vars.treebank}.json"
+      - "training/large/accuracy.json"
 
   - name: evaluate-transformer
     help: "Evaluate on the test data and save the metrics"
     script:
-      - "python -m spacy evaluate ./training/transformer/${vars.treebank}/model-best ./corpus/${vars.treebank}/test.spacy --output ./metrics/large/${vars.treebank}_trf.json --gpu-id ${vars.gpu}"
+      - "python -m spacy evaluate ./training/transformer/model-best ./corpus/${vars.treebank}/test.spacy --output ./training/transformer/model-best/accuracy.json --gpu-id ${vars.gpu}"
     deps:
-      - "training/transformer/${vars.treebank}/model-best"
+      - "training/transformer/model-best"
       - "corpus/${vars.treebank}/test.spacy"
     outputs:
-      - "metrics/large/${vars.treebank}.json"
+      - "training/large/model-best/accuracy.json"
 
   - name: clean
     help: "Clean directories"
