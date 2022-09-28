@@ -41,16 +41,16 @@ workflows:
   all:
     - preprocess
     - train-small
-    - train-medium
-    - train-large
-    - train-transformer
     - evaluate-small
-    - evaluate-medium
-    - evaluate-large
-    - evaluate-transformer
     - package-small
+    - train-medium
+    - evaluate-medium
     - package-medium
+    - train-large
+    - evaluate-large
     - package-large
+    - train-transformer
+    - evaluate-transformer
     - package-transformer
 
 commands:
