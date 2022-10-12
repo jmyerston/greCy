@@ -206,15 +206,20 @@ commands:
     outputs:
       - "training/large/model-best/accuracy.json"
 
-  - name: clean
+  - name: clean-spring
+    help: "Clean directories"
+    script:
+      - "rm -rf packages"
+      - "rm -rf training"
+
+  - name: clean-all
     help: "Clean directories"
     script:
       - "rm -rf assets"
       - "rm -rf corpus"
       - "rm -rf packages"
-      - "rm -rf metrics"
       - "rm -rf training"
       - "rm -rf vectors"
-      - "rm project.lock"
+       
        
 
