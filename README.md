@@ -1,5 +1,5 @@
 # graCy
-A project for building Ancident Greek spaCy models
+A project for building ancient Greek spaCy models
 
 This spaCy project trains four ancient Greek spaCy models using the [Proiel UD corpus](https://universaldependencies.org/treebanks/grc_proiel/index.html). The four standard spaCy models (small, medium, large, and transformer) are build and packaged using the following commands:
 
@@ -8,7 +8,7 @@ This spaCy project trains four ancient Greek spaCy models using the [Proiel UD c
 2. python -m spacy project run all
 
 
-The transformer based model uses a transformer that was trained specifically for this task and makes the model much smaller than the alternatives offered by Stanza and Trankit (for more information on the transformer model and how it was trained see [AristoBERTo](https://huggingface.co/Jacobo/aristoBERTo)).  The spaCy transformer model outperforms  Stanza in all tasks and Trankit in all metrics besides UAS and LAS. It is possible that with a longer training process our model could catch up with Trankit in this area. But among other advantages, the size remains importat: graCy tranformers is only 430 mb  vs.  the 1200 mb of models trained with XLM Roberta used, for instance, by Trankit models. See table  below:
+The transformer based model uses a transformer that was trained specifically for this task and makes the model much smaller than the alternatives offered by Stanza and Trankit (for more information on the transformer model and how it was trained see [AristoBERTo](https://huggingface.co/Jacobo/aristoBERTo)).  The spaCy transformer model outperforms  Stanza in all tasks and Trankit in all metrics besides UAS and LAS. It is possible that with a longer training process our model could catch up with Trankit in this area. But among other advantages, the size remains importat: graCy tranformers is only 430 MB  vs.  the 1.2 GB of the Trankit model trained with XLM Roberta. See table  below:
 
 | Library | Tokens	| Sentences	| UPOS	| XPOS	| UFeats	|Lemmas	|UAS	  |LAS	  |
 |  ---    | ---     | ---       | ---   | ---   | ---     | ---   | ---   | ---   |
