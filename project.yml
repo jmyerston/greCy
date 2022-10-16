@@ -7,19 +7,24 @@ email: "jmyerston@ucsd.edu"
 
 vars:
   config_sm: "small"
+  config_lm: "lemmatizer"
   config_md: "medium"
   config_lg: "large"
   config_trf: "transformer"
   lang: "grc"
   treebank: "UD_Ancient_Greek-PROIEL"
+  treebank_perseus: "UD_Ancient_Greek-Perseus"
   vectors_md: "grc_floret_cbow_nn2_xn10_b50k_dim300.floret"
   vectors_lg: "grc_floret_cbow_nn2_xn10_b200k_dim300.floret"
   train_name: "grc_proiel-ud-train"
   dev_name: "grc_proiel-ud-dev"
   test_name: "grc_proiel-ud-test"
+  train_name_perseus: "grc_perseus-ud-train"
+  dev_name_perseus: "grc_perseus-ud-dev"
+  test_name_perseus: "grc_perseus-ud-test"
   package_name: "ud_proiel"
   package_version: "3.4.0"
-  gpu: 0
+  gpu: -1
 
 # These are the directories that the project needs. The project CLI will make
 # sure that they always exist.
@@ -29,6 +34,12 @@ assets:
   - dest: "assets/${vars.treebank}"
     git:
       repo: "https://github.com/UniversalDependencies/${vars.treebank}"
+      branch: "master"
+      path: ""
+
+  - dest: "assets/${vars.treebank_perseus}"
+    git:
+      repo: "https://github.com/jmyerston/${vars.treebank_perseus}"
       branch: "master"
       path: ""
 
@@ -42,7 +53,7 @@ assets:
 workflows:
   all:
     - preprocess
-    - train-small
+    - train-lemmatizer
     - evaluate-small
     - package-small
     - train-medium
@@ -60,7 +71,9 @@ commands:
   - name: preprocess
     help: "Convert the data to spaCy's format"
     script:
-      - "mkdir -p corpus/${vars.treebank}"
+      - "mkdir -p corpus/train"
+      - "mkdir -p corpus/dev"
+      - "mkdir -p corpus/test"
       - "mkdir -p vectors/medium"
       - "mkdir -p vectors/large"
       - "mkdir -p metrics/small"
@@ -70,9 +83,15 @@ commands:
       - "python -m spacy convert assets/${vars.treebank}/${vars.train_name}.conllu corpus/${vars.treebank}/ --converter conllu --n-sents 10 --merge-subtokens"
       - "python -m spacy convert assets/${vars.treebank}/${vars.dev_name}.conllu corpus/${vars.treebank}/ --converter conllu --n-sents 10 --merge-subtokens"
       - "python -m spacy convert assets/${vars.treebank}/${vars.test_name}.conllu corpus/${vars.treebank}/ --converter conllu --n-sents 10 --merge-subtokens"
-      - "mv corpus/${vars.treebank}/${vars.train_name}.spacy corpus/${vars.treebank}/train.spacy"
-      - "mv corpus/${vars.treebank}/${vars.dev_name}.spacy corpus/${vars.treebank}/dev.spacy"
-      - "mv corpus/${vars.treebank}/${vars.test_name}.spacy corpus/${vars.treebank}/test.spacy"
+      - "python -m spacy convert assets/${vars.treebank_perseus}/${vars.train_name_perseus}.conllu corpus/${vars.treebank_perseus}/ --converter conllu --n-sents 10 --merge-subtokens"
+      - "python -m spacy convert assets/${vars.treebank_perseus}/${vars.dev_name_perseus}.conllu corpus/${vars.treebank_perseus}/ --converter conllu --n-sents 10 --merge-subtokens"
+      - "python -m spacy convert assets/${vars.treebank_perseus}/${vars.test_name_perseus}.conllu corpus/${vars.treebank_perseus}/ --converter conllu --n-sents 10 --merge-subtokens"
+      - "mv corpus/${vars.treebank}/${vars.train_name}.spacy corpus/train/train1.spacy"
+      - "mv corpus/${vars.treebank}/${vars.dev_name}.spacy corpus/dev/dev1.spacy"
+      - "mv corpus/${vars.treebank}/${vars.test_name}.spacy corpus/test/test1.spacy"
+      - "mv corpus/${vars.treebank_perseus}/${vars.train_name_perseus}.spacy corpus/train/train2.spacy"
+      - "mv corpus/${vars.treebank_perseus}/${vars.dev_name_perseus}.spacy corpus/dev/dev2.spacy"
+      - "mv corpus/${vars.treebank_perseus}/${vars.test_name_perseus}.spacy corpus/test/test2.spacy"
       - "python -m spacy init vectors ${vars.lang} assets/${vars.vectors_md} ./vectors/medium --mode floret"
       - "python -m spacy init vectors ${vars.lang} assets/${vars.vectors_lg} ./vectors/large --mode floret"
 
@@ -87,15 +106,15 @@ commands:
       - "vectors/${vars.vectors_md}"
       - "vectors/${vars.vectors_lg}"
 
-  - name: train-small
+  - name: train-lemmatizer
     help: "Train ${vars.treebank}"
     script:
       - "mkdir -p training/small"
-      - "python -m spacy train configs/${vars.config_sm}.cfg --output training/small --gpu-id ${vars.gpu} --paths.train corpus/${vars.treebank}/train.spacy --paths.dev corpus/${vars.treebank}/dev.spacy --nlp.lang=${vars.lang}"
+      - "python -m spacy train configs/${vars.config_lm}.cfg --output training/small --gpu-id ${vars.gpu} --paths.train corpus/train/ --paths.dev corpus/dev --nlp.lang=${vars.lang}"
     deps:
-      - "corpus/${vars.treebank}/train.spacy"
-      - "corpus/${vars.treebank}/dev.spacy"
-      - "configs/${vars.config_sm}.cfg"
+      - "corpus/train/train1.spacy"
+      - "corpus/dev/dev1.spacy"
+      - "configs/${vars.config_lm}.cfg"
     outputs:
       - "training/small"
 
