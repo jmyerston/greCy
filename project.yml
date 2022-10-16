@@ -1,8 +1,10 @@
 title: "UD_Ancient_Greek-PROIEL"
-description: "This project to train a part-of-speech tagger, morphologizer, and dependency parser from the ancient Greek Universal Dependency treebank Proiel."
-
+description: "This project trains four spaCy models using the ancient Greek Universal Dependency treebank Proiel."
 spacy_version: ">=3.4,<4.0.0"
-# Variables can be referenced across the project.yml using ${vars.var_name}
+license: "cc-by-sa-3.0"
+author: "Jacobo Myerston"
+email: "jmyerston@ucsd.edu"
+
 vars:
   config_sm: "small"
   config_md: "medium"
@@ -73,7 +75,6 @@ commands:
       - "mv corpus/${vars.treebank}/${vars.test_name}.spacy corpus/${vars.treebank}/test.spacy"
       - "python -m spacy init vectors ${vars.lang} assets/${vars.vectors_md} ./vectors/medium --mode floret"
       - "python -m spacy init vectors ${vars.lang} assets/${vars.vectors_lg} ./vectors/large --mode floret"
-#      - "python -m spacy init labels ./configs/${vars.config_trf}.cfg ./data/labels --paths.train ./corpus/${vars.treebank}/train.spacy  --paths.dev ./corpus/${vars.treebank}/dev.spacy --verbose --gpu-id 0"
 
     deps:
       - "assets/${vars.treebank}/${vars.train_name}.conllu"
