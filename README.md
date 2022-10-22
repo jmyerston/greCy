@@ -1,4 +1,4 @@
-# graCy
+# El Greco
 A project for building ancient Greek spaCy models
 
 This spaCy project trains four ancient Greek spaCy models using the [Proiel UD corpus](https://universaldependencies.org/treebanks/grc_proiel/index.html). The four standard spaCy models (small, medium, large, and transformer) are build and packaged using the following commands:
