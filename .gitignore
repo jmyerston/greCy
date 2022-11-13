@@ -1,2 +1,9 @@
-
+assets
+corpus
+metrics
+packages
+training
+vectors
+wandb
 .DS_Store
+project.lock
