@@ -1,6 +1,6 @@
 title: "UD_Ancient_Greek-PROIEL"
 description: "This project trains four spaCy models using the ancient Greek Universal Dependency treebank Proiel."
-spacy_version: ">=3.4,<4.2"
+spacy_version: ">=3.4,<4.0"
 license: "cc-by-sa-3.0"
 author: "Jacobo Myerston"
 email: "jmyerston@ucsd.edu"
@@ -22,7 +22,7 @@ vars:
   train_name_perseus: "grc_perseus-ud-train"
   dev_name_perseus: "grc_perseus-ud-dev"
   test_name_perseus: "grc_perseus-ud-test"
-  package_name: "ud_proiel"
+  package_name: "ud_proiel_exp"
   package_version: "3.4.0"
   gpu: -1
 
