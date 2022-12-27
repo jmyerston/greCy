@@ -24,7 +24,7 @@ vars:
   test_name_perseus: "grc_perseus-ud-test"
   package_name: "ud_proiel_exp"
   package_version: "3.4.0"
-  gpu: -1
+  gpu: 0
 
 # These are the directories that the project needs. The project CLI will make
 # sure that they always exist.
