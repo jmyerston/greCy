@@ -1,2 +1,0 @@
-spacy>=3.4.2
-spacy-lookups-data@https://github.com/jmyerston/spacy-lookups-data/archive/refs/heads/proiel.zip
