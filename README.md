@@ -51,11 +51,11 @@ The four standard spaCy models (small, medium, large, and transformer) are built
 ### Performance
 
 
-The _trf model uses for fine-tuning a transformer that was specifically trained to be used with spaCy and, consequently, makes the model much smaller than the alternatives offered by Python nlp libraries Stanza and Trankit (for more information on the transformer model and how it was trained see [AristoBERTo](https://huggingface.co/Jacobo/aristoBERTo)).  The spaCy _trf model outperforms  Stanza and Trankit in all metrics and has the advantage that its size is only 430 MB vs.  the 1.2 GB of the Trankit model trained with XLM Roberta. For a comparison, see table  below:
+The _trf model uses for fine-tuning a transformer that was specifically trained to be used with spaCy and, consequently, makes the model much smaller than the alternatives offered by Python nlp libraries Stanza and Trankit (for more information on the transformer model and how it was trained see [AristoBERTo](https://huggingface.co/Jacobo/aristoBERTo)).  The spaCy _trf model outperforms  Stanza and Trankit in most metrics and has the advantage that its size is only 430 MB vs.  the 1.2 GB of the Trankit model trained with XLM Roberta. For a comparison, see table  below:
 
 | Library | Tokens	| Sentences	| UPOS	| XPOS	| UFeats	|Lemmas	|UAS	  |LAS	  |
 |  ---    | ---     | ---       | ---   | ---   | ---     | ---   | ---   | ---   |
-| spaCy   | 100     | 71.90 | 98.50 | 98.40 | 94.10 | 98.05 | 85.90 | 82.50 |
+| spaCy   | 100     | 71.90 | 98.50 | 98.40 | 94.10 | 94.84 | 85.90 | 82.50 |
 | Trankit | 99.91 	| 67.60     |97.86 	| 97.93 |93.03 	  | 97.50 |85.63 	|82.31  |
 | Stanza  | 100	    | 51.65	    | 97.38	| 97.75	| 92.09	  | 97.42	| 80.34 |76.33  |
 
