@@ -4,9 +4,9 @@ spacy_version: ">=3.5,<4.0.0"
 email: "jmyerston@ucsd.edu"
 source: "https://universaldependencies.org/"
 vars:
-  config_setner: "senter"
   license: "cc-by-sa-3.0"
   author: "Jacobo Myerston"
+  config_sent: "senter"
   config_sm: "small"
   config_md: "medium"
   config_lg: "large"
@@ -24,13 +24,13 @@ vars:
   test_name_proiel: "grc_proiel-ud-test"
   train_name_perseus: "grc_perseus-ud-train"
   dev_name_perseus: "grc_perseus-ud-dev"
-  package_name: "ud_proiel"
+  package_name: "diogenet"
   package_version: "3.5.1"
-  gpu: 0
+  gpu: -1
 
 # These are the directories that the project needs. The project CLI will make
 # sure that they always exist.
-directories: ["assets", "corpus","training", "metrics", "configs", "packages", "vectors"]
+directories: ["assets", "corpus","training", "configs", "packages", "vectors"]
 
 assets:
   - dest: "assets/${vars.treebank_proiel}"
@@ -44,13 +44,7 @@ assets:
       repo: "https://github.com/jmyerston/${vars.treebank_perseus}"
       branch: "master"
       path: ""
-
-  - dest: "assets/${vars.treebank_perseus}"
-    git:
-      repo: "https://github.com/jmyerston/${vars.treebank_perseus}"
-      branch: "master"
-      path: ""
-
+      
   - dest: 'assets/${vars.vectors_md}'
     url: 'https://zenodo.org/record/5733373/files/grc_floret_cbow_nn2_xn10_b50k_dim300.floret'
 
@@ -62,9 +56,9 @@ workflows:
   all:
     - preprocess
     - train-senter
+    - train-parser-small
     - train-small
     - evaluate-small
-    - assemble-small
     - package-small
     - train-lemmatizer-medium
     - train-medium
@@ -113,6 +107,32 @@ commands:
       - "vectors/${vars.vectors_md}"
       - "vectors/${vars.vectors_lg}"
 
+  - name: train-parser-small
+    help: "Train the lemmatizer for the medium model"
+    script:
+      - "mkdir -p training/medium/lemmatizer"
+      - "python -m spacy train configs/parser_sm.cfg --output training/medium/parser --gpu-id ${vars.gpu} --paths.train corpus/train --paths.dev corpus/dev --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/train/grc_proiel-ud-train.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "corpus/dev/grc_proiel-ud-dev.spacy"
+      - "configs/${vars.config_lmd}.cfg"
+    outputs:
+      - "training/medium/lemmatizer"
+
+  - name: train-senter
+    help: "Train senter component"
+    script:
+      - "mkdir -p training/senter"
+      - "python -m spacy train configs/senter.cfg --output training/senter --gpu-id ${vars.gpu} --paths.train corpus/train/grc_perseus-ud-train.spacy --paths.dev corpus/dev/grc_perseus-ud-dev.spacy --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "configs/${vars.config_sent}.cfg"
+    outputs:
+    - "training/senter"
+
   - name: train-lemmatizer-small
     help: "Train the lemmatizer for the small model"
     script:
@@ -146,18 +166,6 @@ commands:
     deps:
       - "training/small/assembled/model-best"
       - "corpus/test/grc_proiel-ud-test.spacy"
-
-  - name: assemble-small
-    help: "Assemble full pipeline"
-    script:
-      - "python -m spacy assemble configs/assemble.cfg training/small/final/${vars.treebank} --nlp.lang ${vars.lang} --paths.train corpus/${vars.treebank}/train.spacy --paths.dev corpus/${vars.treebank}/dev.spacy --paths.tagger_source training/small/model-best --paths.senter_source training/senter/model-best"
-    deps:
-      - "corpus/${vars.treebank}/train.spacy"
-      - "corpus/${vars.treebank}/dev.spacy"
-      - "configs/assemble.cfg"
-      - "training/small/model-best"
-    outputs:
-      - "training/${vars.treebank}/final"
 
   - name: package-small
     help: "Package the trained model"
@@ -260,7 +268,7 @@ commands:
     help: "Train the lemmatizer for the medium model"
     script:
       - "mkdir -p training/transformer/lemmatizer"
-      - "python -m spacy train configs/${vars.config_ltrf}.cfg --output training/transformer/lemmatizer --gpu-id ${vars.gpu} --paths.train corpus/train/ --paths.dev corpus/dev --nlp.lang=${vars.lang}"
+      - "python -m spacy train configs/${vars.config_ltrf}.cfg --output training/transformer/lemmatizer --gpu-id ${vars.gpu} --paths.train corpus/train --paths.dev corpus/dev --nlp.lang=${vars.lang}"
     deps:
       - "corpus/train/grc_perseus-ud-train.spacy"
       - "corpus/train/grc_proiel-ud-train.spacy"
