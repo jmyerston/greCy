@@ -107,22 +107,8 @@ commands:
       - "vectors/${vars.vectors_md}"
       - "vectors/${vars.vectors_lg}"
 
-  - name: train-parser-small
-    help: "Train the lemmatizer for the medium model"
-    script:
-      - "mkdir -p training/medium/lemmatizer"
-      - "python -m spacy train configs/parser_sm.cfg --output training/medium/parser --gpu-id ${vars.gpu} --paths.train corpus/train --paths.dev corpus/dev --nlp.lang=${vars.lang}"
-    deps:
-      - "corpus/train/grc_perseus-ud-train.spacy"
-      - "corpus/train/grc_proiel-ud-train.spacy"
-      - "corpus/dev/grc_perseus-ud-dev.spacy"
-      - "corpus/dev/grc_proiel-ud-dev.spacy"
-      - "configs/${vars.config_lmd}.cfg"
-    outputs:
-      - "training/medium/lemmatizer"
-
   - name: train-senter
-    help: "Train senter component"
+    help: "Train senter component without vectors"
     script:
       - "mkdir -p training/senter"
       - "python -m spacy train configs/senter.cfg --output training/senter --gpu-id ${vars.gpu} --paths.train corpus/train/grc_perseus-ud-train.spacy --paths.dev corpus/dev/grc_perseus-ud-dev.spacy --nlp.lang=${vars.lang}"
