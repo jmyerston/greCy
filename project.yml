@@ -56,7 +56,6 @@ workflows:
   all:
     - preprocess
     - train-senter
-    - train-parser-small
     - train-small
     - evaluate-small
     - package-small
