@@ -26,7 +26,7 @@ vars:
   dev_name_perseus: "grc_perseus-ud-dev"
   package_name: "diogenet"
   package_version: "3.5.1"
-  gpu: -1
+  gpu: 0
 
 # These are the directories that the project needs. The project CLI will make
 # sure that they always exist.
