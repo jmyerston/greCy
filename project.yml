@@ -6,6 +6,7 @@ source: "https://universaldependencies.org/"
 vars:
   license: "cc-by-sa-3.0"
   author: "Jacobo Myerston"
+  config_sent: "senter"
   config_sm: "small"
   config_md: "medium"
   config_lg: "large"
@@ -23,13 +24,13 @@ vars:
   test_name_proiel: "grc_proiel-ud-test"
   train_name_perseus: "grc_perseus-ud-train"
   dev_name_perseus: "grc_perseus-ud-dev"
-  package_name: "ud_proiel"
+  package_name: "diogenet"
   package_version: "3.5.1"
   gpu: 0
 
 # These are the directories that the project needs. The project CLI will make
 # sure that they always exist.
-directories: ["assets", "corpus","training","configs", "packages", "vectors"]
+directories: ["assets", "corpus","training", "configs", "packages", "vectors"]
 
 assets:
   - dest: "assets/${vars.treebank_proiel}"
@@ -43,7 +44,7 @@ assets:
       repo: "https://github.com/jmyerston/${vars.treebank_perseus}"
       branch: "master"
       path: ""
-
+      
   - dest: 'assets/${vars.vectors_md}'
     url: 'https://zenodo.org/record/5733373/files/grc_floret_cbow_nn2_xn10_b50k_dim300.floret'
 
@@ -54,7 +55,7 @@ assets:
 workflows:
   all:
     - preprocess
-    - train-lemmatizer-small
+    - train-senter
     - train-small
     - evaluate-small
     - package-small
@@ -104,6 +105,18 @@ commands:
       - "corpus/test/grc_proiel-ud-test.spacy"
       - "vectors/${vars.vectors_md}"
       - "vectors/${vars.vectors_lg}"
+
+  - name: train-senter
+    help: "Train senter component without vectors"
+    script:
+      - "mkdir -p training/senter"
+      - "python -m spacy train configs/senter.cfg --output training/senter --gpu-id ${vars.gpu} --paths.train corpus/train/grc_perseus-ud-train.spacy --paths.dev corpus/dev/grc_perseus-ud-dev.spacy --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "configs/${vars.config_sent}.cfg"
+    outputs:
+    - "training/senter"
 
   - name: train-lemmatizer-small
     help: "Train the lemmatizer for the small model"
@@ -240,7 +253,7 @@ commands:
     help: "Train the lemmatizer for the medium model"
     script:
       - "mkdir -p training/transformer/lemmatizer"
-      - "python -m spacy train configs/${vars.config_ltrf}.cfg --output training/transformer/lemmatizer --gpu-id ${vars.gpu} --paths.train corpus/train/ --paths.dev corpus/dev --nlp.lang=${vars.lang}"
+      - "python -m spacy train configs/${vars.config_ltrf}.cfg --output training/transformer/lemmatizer --gpu-id ${vars.gpu} --paths.train corpus/train --paths.dev corpus/dev --nlp.lang=${vars.lang}"
     deps:
       - "corpus/train/grc_perseus-ud-train.spacy"
       - "corpus/train/grc_proiel-ud-train.spacy"
