@@ -38,7 +38,22 @@
     {
       "patterns": [[{"ORTH": "·"}]],
       "attrs": {"TAG": "Z"}
-    }
-      
+    },
+    {
+      "patterns": [[{"ORTH": "("}]],
+      "attrs": {"POS": "PUNCT"}
+    },
+    {
+      "patterns": [[{"ORTH": ")"}]],
+      "attrs": {"TAG": "Z"}
+    },
+    {
+      "patterns": [[{"ORTH": "["}]],
+      "attrs": {"POS": "PUNCT"}
+    },
+    {
+      "patterns": [[{"ORTH": "]"}]],
+      "attrs": {"TAG": "Z"}
+    }     
       
 ]
