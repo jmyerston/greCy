@@ -55,7 +55,7 @@ The _trf model uses for fine-tuning a transformer that was specifically trained 
 
 | Library | Tokens	| Sentences	| UPOS	| XPOS	| UFeats	|Lemmas	|UAS	  |LAS	  |
 |  ---    | ---     | ---       | ---   | ---   | ---     | ---   | ---   | ---   |
-| spaCy   | 100     | 71.90 | 98.50 | 98.40 | 94.10 | 94.84 | 85.90 | 82.50 |
+| spaCy   | 100     | 71.90 | 98.50 | 98.40 | 94.10 | 96.9 | 85.90 | 82.50 |
 | Trankit | 99.91 	| 67.60     |97.86 	| 97.93 |93.03 	  | 97.50 |85.63 	|82.31  |
 | Stanza  | 100	    | 51.65	    | 97.38	| 97.75	| 92.09	  | 97.42	| 80.34 |76.33  |
 
