@@ -14,6 +14,10 @@
     {
       "patterns": [[{"ORTH": ","}]],
       "attrs": {"TAG": "Z"}
+    },
+    {
+      "patterns": [[{"ORTH": "."}]],
+      "attrs": {"LEMMA": "."}
     }
       
 ]
