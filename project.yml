@@ -1,0 +1,405 @@
+title: "Ancient Greek PROIEL and PERSEUS MODELS"
+description: "This project trains seven spaCy models using the ancient Greek Universal Dependency treebanks Proiel and Perseus."
+spacy_version: ">=3.5,<4.0.0"
+email: "jmyerston@ucsd.edu"
+source: "https://universaldependencies.org/"
+vars:
+  license: "MIT"
+  author: "Jacobo Myerston"
+  config_ssm: "senter"
+  config_slg: "senter_vec"
+  config_sm: "small"
+  config_md: "medium"
+  config_lg: "large"
+  config_trf: "transformer"
+  config_lsm: "lemmatizer_sm"
+  config_llg: "lemmatizer_vec"
+  config_ltrf: "lemmatizer_trf"
+  lang: "grc"
+  treebank_proiel: "UD_Ancient_Greek-PROIEL"
+  treebank_perseus: "UD_Ancient_Greek-Perseus"
+  vectors_lg: "grc_floret_cbow_nn2_xn10_b200k_dim300.floret"
+  train_name_proiel: "grc_proiel-ud-train"
+  dev_name_proiel: "grc_proiel-ud-dev"
+  test_name_proiel: "grc_proiel-ud-test"
+  train_name_perseus: "grc_perseus-ud-train"
+  dev_name_perseus: "grc_perseus-ud-dev"
+  test_name_perseus: "grc_perseus-ud-test"
+  package_name_proiel: "proiel"
+  package_name_perseus: "perseus"
+  package_name_grecy: "greCy_lemmatizer"
+
+  package_version: "3.5.3"
+  gpu: 0
+
+# These are the directories that the project needs. The project CLI will make
+# sure that they always exist.
+directories: ["assets", "corpus","training", "configs", "packages", "vectors"]
+
+assets:
+  - dest: "assets/${vars.treebank_proiel}"
+    git:
+      repo: "https://github.com/jmyerston/${vars.treebank_proiel}"
+      branch: "master"
+      path: ""
+
+  - dest: "assets/${vars.treebank_perseus}"
+    git:
+      repo: "https://github.com/jmyerston/${vars.treebank_perseus}"
+      branch: "master"
+      path: ""
+      
+  - dest: 'assets/${vars.vectors_lg}'
+    url: 'https://zenodo.org/record/5733373/files/grc_floret_cbow_nn2_xn10_b200k_dim300.floret'
+
+
+workflows:
+  all:
+    - preprocess
+    - train-lemmatizer-small
+    - train-lemmatizer-large
+  #  - train-lemmatizer-greCy
+    - train-small-proiel
+    - evaluate-small-proiel
+    - package-small-proiel
+    - train-small-perseus
+    - evaluate-small-perseus
+    - package-small-perseus
+    - train-large-proiel
+    - evaluate-large-proiel
+    - package-large-proiel
+    - train-large-perseus
+    - evaluate-large-perseus
+    - package-large-perseus
+    - train-transformer-proiel
+    - evaluate-transformer-proiel
+    - package-transformer-proiel
+    - train-transformer-perseus
+    - evaluate-transformer-perseus
+    - package-transformer-perseus
+    - evaluate-greCy-lemmatizer
+    - package-greCy-lemmatizer
+
+commands:
+
+  - name: preprocess
+    help: "Convert the data to spaCy's format"
+    script:
+      - "mkdir -p vectors/large"
+      - "python -m spacy convert assets/${vars.treebank_proiel}/${vars.train_name_proiel}.conllu corpus/train --converter conllu --n-sents 10 --merge-subtokens"
+      - "python -m spacy convert assets/${vars.treebank_proiel}/${vars.dev_name_proiel}.conllu corpus/dev --converter conllu --n-sents 10 --merge-subtokens"
+      - "python -m spacy convert assets/${vars.treebank_proiel}/${vars.test_name_proiel}.conllu corpus/test --converter conllu --n-sents 10 --merge-subtokens"
+      - "python -m spacy convert assets/${vars.treebank_perseus}/${vars.train_name_perseus}.conllu corpus/train --converter conllu --n-sents 10 --merge-subtokens"
+      - "python -m spacy convert assets/${vars.treebank_perseus}/${vars.dev_name_perseus}.conllu corpus/dev --converter conllu --n-sents 10 --merge-subtokens"
+      - "python -m spacy convert assets/${vars.treebank_perseus}/${vars.test_name_perseus}.conllu corpus/test --converter conllu --n-sents 10 --merge-subtokens"
+      - "python -m spacy init vectors ${vars.lang} assets/${vars.vectors_lg} ./vectors/large --mode floret"
+
+    deps:
+      - "assets/${vars.treebank_proiel}/${vars.train_name_proiel}.conllu"
+      - "assets/${vars.treebank_proiel}/${vars.dev_name_proiel}.conllu"
+      - "assets/${vars.treebank_proiel}/${vars.test_name_proiel}.conllu"
+      - "assets/${vars.treebank_perseus}/${vars.train_name_perseus}.conllu"
+      - "assets/${vars.treebank_perseus}/${vars.dev_name_perseus}.conllu"
+
+    outputs:
+      - "corpus/train/grc_proiel-ud-train.spacy"
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/dev/grc_proiel-ud-dev.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "corpus/test/grc_proiel-ud-test.spacy"
+      - "vectors/${vars.vectors_lg}"
+
+  - name: train-lemmatizer-small
+    help: "Train the lemmatizer for the small model"
+    script:
+      - "mkdir -p training/lemmatizer/small"
+      - "python -m spacy train configs/${vars.config_lsm}.cfg --output training/lemmatizer/small --gpu-id ${vars.gpu} --paths.train corpus/train --paths.dev corpus/dev --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_proiel-ud-train.spacy"
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/dev/grc_proiel-ud-dev.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "configs/${vars.config_lsm}.cfg"
+    outputs:
+      - "training/lemmatizer/small"
+
+  - name: train-lemmatizer-large
+    help: "Train the lemmatizer for the large model"
+    script:
+      - "mkdir -p training/lemmatizer/large"
+      - "python -m spacy train configs/${vars.config_llg}.cfg --output training/lemmatizer/large --gpu-id ${vars.gpu} --paths.train corpus/train/ --paths.dev corpus/dev --paths.vectors vectors/large --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/train/grc_proiel-ud-train.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "corpus/dev/grc_proiel-ud-dev.spacy"
+      - "configs/${vars.config_llg}.cfg"
+    outputs:
+      - "training/lemmatizer/large"
+
+  - name: train-small-proiel
+    help: "Train ${vars.treebank_proiel}"
+    script:
+      - "mkdir -p training/small/proiel/assembled"
+      - "python -m spacy train configs/${vars.config_sm}.cfg --output training/small/proiel/assembled --gpu-id ${vars.gpu} --paths.train corpus/train/grc_proiel-ud-train.spacy --paths.dev corpus/dev/grc_proiel-ud-dev.spacy --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_proiel-ud-train.spacy"
+      - "corpus/dev/grc_proiel-ud-dev.spacy"
+      - "configs/${vars.config_sm}.cfg"
+    outputs:
+      - "training/small/proiel/assembled"
+
+  - name: train-small-perseus
+    help: "Train ${vars.treebank_perseus}"
+    script:
+      - "mkdir -p training/small/perseus/assembled"
+      - "python -m spacy train configs/${vars.config_sm}.cfg --output training/small/perseus/assembled --gpu-id ${vars.gpu} --paths.train corpus/train/grc_perseus-ud-train.spacy --paths.dev corpus/dev/grc_perseus-ud-dev.spacy --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "configs/${vars.config_sm}.cfg"
+    outputs:
+      - "training/small/perseus/assembled"
+
+  - name: evaluate-small-proiel
+    help: "Evaluate on the test data and save the metrics"
+    script:
+      - "python -m spacy evaluate ./training/small/proiel/assembled/model-best ./corpus/test/grc_proiel-ud-test.spacy --output ./training/small/proiel/assembled/model-best/accuracy.json --gpu-id ${vars.gpu}"
+    deps:
+      - "training/small/proiel/assembled/model-best"
+      - "corpus/test/grc_proiel-ud-test.spacy"
+
+  - name: evaluate-small-perseus
+    help: "Evaluate on the test data and save the metrics"
+    script:
+      - "python -m spacy evaluate ./training/small/perseus/assembled/model-best ./corpus/test/grc_perseus-ud-test.spacy --output ./training/small/perseus/assembled/model-best/accuracy.json --gpu-id ${vars.gpu}"
+    deps:
+      - "training/small/perseus/assembled/model-best"
+      - "corpus/test/grc_perseus-ud-test.spacy"
+
+
+  - name: package-small-proiel
+    help: "Package the trained model"
+    script:
+      - "python -m spacy package training/small/proiel/assembled/model-best packages --name ${vars.package_name_proiel}_sm --version ${vars.package_version} --build wheel --force"
+    deps:
+      - "training/small/proiel/assembled"
+    outputs_no_cache:
+      - "packages/${vars.lang}_${vars.package_name_proiel}_sm-${vars.package_version}/dist/grc_${vars.package_name_proiel}config_sm-${vars.package_version}.tar.gz"
+
+  - name: package-small-perseus
+    help: "Package the trained model"
+    script:
+      - "python -m spacy package training/small/perseus/assembled/model-best packages --name ${vars.package_name_perseus}_sm --version ${vars.package_version} --build wheel --force"
+    deps:
+      - "training/small/perseus/assembled"
+    outputs_no_cache:
+      - "packages/${vars.lang}_${vars.package_name_perseus}_sm-${vars.package_version}/dist/grc_${vars.package_name_perseus}config_sm-${vars.package_version}.tar.gz"
+ 
+  - name: train-large-proiel
+    help: "Train ${vars.treebank_proiel}"
+    script:
+      - "mkdir -p training/large/assembled"
+      - "python -m spacy train configs/${vars.config_lg}.cfg --output training/large/proiel/assembled --gpu-id ${vars.gpu} --paths.train corpus/train/grc_proiel-ud-train.spacy --paths.dev corpus/dev/grc_proiel-ud-dev.spacy --paths.vectors vectors/large --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_proiel-ud-train.spacy"
+      - "corpus/dev/grc_proiel-ud-dev.spacy"
+      - "configs/${vars.config_lg}.cfg"
+    outputs:
+      - "training/large/proiel/assembled"
+
+  - name: train-large-perseus
+    help: "Train ${vars.treebank_perseus}"
+    script:
+      - "mkdir -p training/large/perseus/assembled"
+      - "python -m spacy train configs/${vars.config_lg}.cfg --output training/large/perseus/assembled --gpu-id ${vars.gpu} --paths.train corpus/train/grc_perseus-ud-train.spacy --paths.dev corpus/dev/grc_perseus-ud-dev.spacy --paths.vectors vectors/large --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "configs/${vars.config_lg}.cfg"
+    outputs:
+      - "training/large/perseus/assembled"
+
+
+  - name: evaluate-large-proiel
+    help: "Evaluate on the test data and save the metrics"
+    script:
+      - "python -m spacy evaluate ./training/large/proiel/assembled/model-best ./corpus/test/grc_proiel-ud-test.spacy --output ./training/large/proiel/assembled/model-best/accuracy.json --gpu-id ${vars.gpu}"
+    deps:
+      - "training/large/proiel/assembled"
+      - "corpus/test/grc_proiel-ud-test.spacy"
+    outputs:
+      - "training/large/assembled/accuracy.json"
+  
+  - name: evaluate-large-perseus
+    help: "Evaluate on the test data and save the metrics"
+    script:
+      - "python -m spacy evaluate ./training/large/perseus/assembled/model-best ./corpus/test/grc_perseus-ud-test.spacy --output ./training/large/perseus/assembled/model-best/accuracy.json --gpu-id ${vars.gpu}"
+    deps:
+      - "training/large/perseus/assembled"
+      - "corpus/test/grc_perseus-ud-test.spacy"
+    outputs:
+      - "training/large/assembled/accuracy.json"
+
+  - name: package-large-proiel
+    help: "Package the trained model so it can be installed"
+    script:
+      - "python -m spacy package training/large/proiel/assembled/model-best packages --name ${vars.package_name_proiel}_lg --version ${vars.package_version} --build wheel --force"
+    deps:
+      - "training/large/proiel/assembled/model-best"
+    outputs_no_cache:
+      - "packages/${vars.lang}_${vars.package_name_proiel}_lg-${vars.package_version}/dist/grc_${vars.package_name_proiel}config_lg-${vars.package_version}.tar.gz"
+
+  - name: package-large-perseus
+    help: "Package the trained model so it can be installed"
+    script:
+      - "python -m spacy package training/large/perseus/assembled/model-best packages --name ${vars.package_name_perseus}_lg --version ${vars.package_version} --build wheel --force"
+    deps:
+      - "training/large/perseus/assembled/model-best"
+    outputs_no_cache:
+      - "packages/${vars.lang}_${vars.package_name_perseus}_lg-${vars.package_version}/dist/grc_${vars.package_name_perseus}config_lg-${vars.package_version}.tar.gz"
+
+  - name: train-transformer-proiel
+    help: "Train ${vars.treebank_proiel}"
+    script:
+      - "mkdir -p training/transformer/proiel/assembled"
+      - "python -m spacy train configs/${vars.config_trf}.cfg --output training/transformer/proiel/assembled --gpu-id ${vars.gpu} --paths.train corpus/train/grc_proiel-ud-train.spacy --paths.dev corpus/dev/grc_proiel-ud-dev.spacy --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_proiel-ud-train.spacy"
+      - "corpus/dev/grc_proiel-ud-dev.spacy"
+      - "configs/${vars.config_trf}.cfg"
+    outputs:
+      - "training/transformer/proiel/assembled"
+
+  - name: evaluate-transformer-proiel
+    help: "Evaluate on the test data and save the metrics"
+    script:
+      - "python -m spacy evaluate ./training/transformer/proiel/assembled/model-best ./corpus/test/grc_proiel-ud-test.spacy --output ./training/transformer/proiel/assembled/model-best/accuracy.json --gpu-id ${vars.gpu}"
+    deps:
+      - "training/transformer/proiel/assembled/model-best"
+      - "corpus/test/grc_proiel-ud-test.spacy"
+    outputs:
+      - "training/transformer/proiel/assembled/model-best/accuracy.json"
+
+  - name: package-transformer-proiel
+    help: "Package the trained model so it can be installed"
+    script:
+      - "python -m spacy package training/transformer/proiel/assembled/model-best packages --name ${vars.package_name_proiel}_trf --version ${vars.package_version} --build wheel --force"
+    deps:
+      - "training/transformer/proiel/assembled/model-best"
+    outputs_no_cache:
+      - "packages/${vars.lang}_${vars.package_name_proiel}_trf-${vars.package_version}/dist/grc_${vars.package_name_proiel}config_trf-${vars.package_version}.tar.gz"
+  
+  - name: train-transformer-perseus
+    help: "Train ${vars.treebank_perseus}"
+    script:
+      - "mkdir -p training/transformer/perseus/assembled"
+      - "python -m spacy train configs/${vars.config_trf}.cfg --output training/transformer/perseus/assembled --gpu-id ${vars.gpu} --paths.train corpus/train/grc_perseus-ud-train.spacy --paths.dev corpus/dev/grc_perseus-ud-dev.spacy --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "configs/${vars.config_trf}.cfg"
+    outputs:
+      - "training/transformer/perseus/assembled"
+
+  - name: evaluate-transformer-perseus
+    help: "Evaluate on the test data and save the metrics"
+    script:
+      - "python -m spacy evaluate ./training/transformer/perseus/assembled/model-best ./corpus/test/grc_perseus-ud-test.spacy --output ./training/transformer/perseus/assembled/model-best/accuracy.json --gpu-id ${vars.gpu}"
+    deps:
+      - "training/transformer/perseus/assembled/model-best"
+      - "corpus/test/grc_perseus-ud-test.spacy"
+    outputs:
+      - "training/transformer/perseus/assembled/model-best/accuracy.json"
+
+  - name: package-transformer-perseus
+    help: "Package the trained model so it can be installed"
+    script:
+      - "python -m spacy package training/transformer/perseus/assembled/model-best packages --name ${vars.package_name_perseus}_trf --version ${vars.package_version} --build wheel --force"
+    deps:
+      - "training/transformer/perseus/assembled/model-best"
+    outputs_no_cache:
+      - "packages/${vars.lang}_${vars.package_name_perseus}_trf-${vars.package_version}/dist/grc_${vars.package_name_perseus}config_trf-${vars.package_version}.tar.gz"
+  
+  - name: train-lemmatizer-greCy
+    help: "Train the lemmatizer for the medium model"
+    script:
+      - "mkdir -p training/lemmatizer/greCy_lemmatizer"
+      - "python -m spacy train configs/${vars.config_ltrf}.cfg --output ./training/lemmatizer/greCy_lemmatizer --gpu-id ${vars.gpu} --paths.train corpus/train --paths.dev corpus/dev --nlp.lang=${vars.lang}"
+    deps:
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/train/grc_perseus-ud-train.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "corpus/dev/grc_perseus-ud-dev.spacy"
+      - "configs/${vars.config_ltrf}.cfg"
+    outputs:
+      - "training/lemmatizer/greCy_lemmatizer" 
+  
+  - name: evaluate-greCy-lemmatizer
+    help: "Evaluate on the test data and save the metrics"
+    script:
+      - "python -m spacy evaluate ./training/lemmatizer/greCy_lemmatizer ./corpus/test/grc_proiel-ud-test.spacy --output ./training/lemmatizer/greCy_lemmatizer/model-best/accuracy.json --gpu-id ${vars.gpu}"
+    deps:
+      - "training/lemmatizer/greCy_lemmatizermodel-best"
+      - "corpus/test/grc_proiel-ud-test.spacy"
+    outputs:
+      - "training/lemmatizer/greCy_lemmatizer/model-best/accuracy.json"
+  
+  - name: package-greCy-lemmatizer
+    help: "Package the trained model so it can be installed"
+    script:
+      - "python -m spacy package ./training/lemmatizer/greCy_lemmatizer/model-best packages --name ${vars.package_name_perseus}_trf --version ${vars.package_version} --build wheel --force"
+    deps:
+      - "training/lemmatizer/greCy_lemmatizer/model-best"
+    outputs_no_cache:
+      - "packages/${vars.package_name_grecy}_trf-${vars.package_version}/dist/grc_${vars.package_name_grecy}config_trf-${vars.package_version}.tar.gz"
+
+  - name: clean-spring
+    help: "Clean directories"
+    script:
+      - "rm -rf packages"
+      - "rm -rf training"
+
+  - name: clean-all
+    help: "Clean directories"
+    script:
+      - "rm -rf assets"
+      - "rm -rf packages"
+      - "rm -rf training"
+      - "rm -rf vectors"
+
+  - name: push-small-proiel
+    help: "Pushes the packcaged model to the huggingface hub"
+    script:
+    - "python -m spacy huggingface-hub push packages/${vars.lang}_${vars.package_name_proiel}_sm-${vars.package_version}/dist/grc_${vars.package_name_proiel}_sm-${vars.package_version}-py3-none-any.whl"
+       
+  - name: push-large-proiel
+    help: "Pushes the packcaged model to the huggingface hub"
+    script:
+    - "python -m spacy huggingface-hub push packages/${vars.lang}_${vars.package_name_proiel}_lg-${vars.package_version}/dist/grc_${vars.package_name_proiel}_lg-${vars.package_version}-py3-none-any.whl"
+
+  - name: push-transformer-proiel
+    help: "Pushes the packcaged model to the huggingface hub"
+    script:
+    - "python -m spacy huggingface-hub push packages/${vars.lang}_${vars.package_name_proiel}_trf-${vars.package_version}/dist/grc_${vars.package_name_proiel}_trf-${vars.package_version}-py3-none-any.whl" 
+
+  - name: push-small-perseus
+    help: "Pushes the packcaged model to the huggingface hub"
+    script:
+    - "python -m spacy huggingface-hub push packages/${vars.lang}_${vars.package_name_perseus}_sm-${vars.package_version}/dist/grc_${vars.package_name_perseus}_sm-${vars.package_version}-py3-none-any.whl"
+       
+  - name: push-large-perseus
+    help: "Pushes the packcaged model to the huggingface hub"
+    script:
+    - "python -m spacy huggingface-hub push packages/${vars.lang}_${vars.package_name_perseus}_lg-${vars.package_version}/dist/grc_${vars.package_name_perseus}_lg-${vars.package_version}-py3-none-any.whl"
+
+  - name: push-transformer-perseus
+    help: "Pushes the packcaged model to the huggingface hub"
+    script:
+    - "python -m spacy huggingface-hub push packages/${vars.lang}_${vars.package_name_perseus}_trf-${vars.package_version}/dist/grc_${vars.package_name_perseus}_trf-${vars.package_version}-py3-none-any.whl"
+
+  - name: push-lemmatizer-greCy
+    help: "Pushes the packcaged model to the huggingface hub"
+    script:
+    - "python -m spacy huggingface-hub push packages/${vars.lang}_${vars.package_name_perseus}_trf-${vars.package_version}/dist/grc_${vars.package_name_perseus}_trf-${vars.package_version}-py3-none-any.whl"  
+
