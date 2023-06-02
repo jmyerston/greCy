@@ -1,2 +1,3 @@
 spacy>=3.5.3
 wandb
+spacy-huggingface-hub
