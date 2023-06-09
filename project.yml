@@ -11,7 +11,8 @@ vars:
   config_sm: "small"
   config_md: "medium"
   config_lg: "large"
-  config_trf: "transformer"
+  config_trf_proiel: "transformer_proiel"
+  config_trf_perseus: "transformer_perseus"
   config_lsm: "lemmatizer_sm"
   config_llg: "lemmatizer_vec"
   config_ltrf: "lemmatizer_trf"
@@ -263,11 +264,11 @@ commands:
     help: "Train ${vars.treebank_proiel}"
     script:
       - "mkdir -p training/transformer/proiel/assembled"
-      - "python -m spacy train configs/${vars.config_trf}.cfg --output training/transformer/proiel/assembled --gpu-id ${vars.gpu} --paths.train corpus/train/grc_proiel-ud-train.spacy --paths.dev corpus/dev/grc_proiel-ud-dev.spacy --nlp.lang=${vars.lang}"
+      - "python -m spacy train configs/${vars.config_trf_proiel}.cfg --output training/transformer/proiel/assembled --gpu-id ${vars.gpu} --paths.train corpus/train/grc_proiel-ud-train.spacy --paths.dev corpus/dev/grc_proiel-ud-dev.spacy --nlp.lang=${vars.lang}"
     deps:
       - "corpus/train/grc_proiel-ud-train.spacy"
       - "corpus/dev/grc_proiel-ud-dev.spacy"
-      - "configs/${vars.config_trf}.cfg"
+      - "configs/${vars.config_trf_proiel}.cfg"
     outputs:
       - "training/transformer/proiel/assembled"
 
@@ -294,11 +295,11 @@ commands:
     help: "Train ${vars.treebank_perseus}"
     script:
       - "mkdir -p training/transformer/perseus/assembled"
-      - "python -m spacy train configs/${vars.config_trf}.cfg --output training/transformer/perseus/assembled --gpu-id ${vars.gpu} --paths.train corpus/train/grc_perseus-ud-train.spacy --paths.dev corpus/dev/grc_perseus-ud-dev.spacy --nlp.lang=${vars.lang}"
+      - "python -m spacy train configs/${vars.config_trf_perseus}.cfg --output training/transformer/perseus/assembled --gpu-id ${vars.gpu} --paths.train corpus/train/grc_perseus-ud-train.spacy --paths.dev corpus/dev/grc_perseus-ud-dev.spacy --nlp.lang=${vars.lang}"
     deps:
       - "corpus/train/grc_perseus-ud-train.spacy"
       - "corpus/dev/grc_perseus-ud-dev.spacy"
-      - "configs/${vars.config_trf}.cfg"
+      - "configs/${vars.config_trf_perseus}.cfg"
     outputs:
       - "training/transformer/perseus/assembled"
 
@@ -325,7 +326,7 @@ commands:
     help: "Train the lemmatizer for the medium model"
     script:
       - "mkdir -p training/lemmatizer/greCy_lemmatizer"
-      - "python -m spacy train configs/${vars.config_ltrf}.cfg --output ./training/lemmatizer/greCy_lemmatizer --gpu-id ${vars.gpu} --paths.train corpus/train --paths.dev corpus/dev --nlp.lang=${vars.lang}"
+      - "python -m spacy train configs/${vars.config_ltrf}.cfg  --output ./training/lemmatizer/greCy_lemmatizer --gpu-id ${vars.gpu} --paths.train corpus/train --paths.dev corpus/dev --nlp.lang=${vars.lang}"
     deps:
       - "corpus/train/grc_perseus-ud-train.spacy"
       - "corpus/train/grc_perseus-ud-train.spacy"

@@ -73,14 +73,23 @@ I offer here the project file, I use to train the models in case you want to cus
 
 ### Performance
 
+For a general comparison, I share here the metrics of the Proiel transformer grc_proiel_trf and grc_perseys_trf.  These models use for fine-tuning a transformer that was specifically trained to be used with spaCy and, consequently, makes the model much smaller than the alternatives offered by Python nlp libraries such as Stanza and Trankit (for more information on the transformer model and how it was trained see [aristoBERTo](https://huggingface.co/Jacobo/aristoBERTo)).  The greCy's _trf models outperform Stanza and Trankit in most metrics and have the advantage that their size is only ~430 MB vs.  the 1.2 GB of the Trankit model trained with XLM Roberta.  See table  below:
 
-As a matter of comparing, I share here the metrics of the Proiel transformer grc_proiel_trf.  This model uses for fine-tuning a transformer that was specifically trained to be used with spaCy and, consequently, makes the model much smaller than the alternatives offered by Python nlp libraries Stanza and Trankit (for more information on the transformer model and how it was trained see [AristoBERTo](https://huggingface.co/Jacobo/aristoBERTo)).  The spaCy _trf model outperforms  Stanza and Trankit in all metrics and has the advantage that its size is only 430 MB vs.  the 1.2 GB of the Trankit model trained with XLM Roberta. For a comparison, see table  below:
+#### Proiel
 
 | Library | Tokens	| Sentences	| UPOS	| XPOS	| UFeats	|Lemmas	|UAS	  |LAS	  |
 |  ---    | ---     | ---       | ---   | ---   | ---     | ---   | ---   | ---   |
-| spaCy   | 100     | 71.90 | 98.50 | 98.40 | 94.10 | 98.05 | 85.90 | 82.50 |
+| spaCy   | 100     | 71.74 | 98.11 | 98.21 | 93.91 | 96.69 | 85.59 | 82.30 |
 | Trankit | 99.91 	| 67.60     |97.86 	| 97.93 |93.03 	  | 97.50 |85.63 	|82.31  |
 | Stanza  | 100	    | 51.65	    | 97.38	| 97.75	| 92.09	  | 97.42	| 80.34 |76.33  |
+
+#### Perseus
+
+| Library | Tokens	| Sentences	| UPOS	| XPOS	| UFeats	|Lemmas	|UAS	  |LAS	  |
+|  ---    | ---     | ---       | ---   | ---   | ---     | ---   | ---   | ---   |
+| spaCy   | 100     | 99.38     | 95.83 | 95.92 | 94.79 | 97.23 | 80.93 | 75.74 |
+| Trankit | 99.71 | 98.70 |93.97 	| 87.25 |91.66 	  | 88.52  |83.48 	|78.56  |
+| Stanza  | 99.8	 | 98.85	| 92.54	| 85.22	| 91.06	| 88.26	| 78.75 |73.35  |
 
 ### Caveat 
 
