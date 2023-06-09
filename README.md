@@ -100,11 +100,5 @@ This project was initiated as part of the [Diogenet Project](https://diogenet.uc
 
 
 
-Metrics, however, can be misleading. This becomes particularly obvious when you work with texts that are not part  of the training dataset. In addition, greCy's lemmatizers (in all sizes) exhibit lower benchmarks but have a substantially larger vocabulary than the Stanza and Trankit models because they were trained with a complemental lemma corpus derived from Giussepe G.A. Celano [lemmatized corpus](https://github.com/gcelano/LemmatizedAncientGreekXML). This means that the greCy's lemmatizers perform better than Trankit and Stanza when processing texts not included in the Perseus and Proiel datasets. 
-
-
-
-
-
 
 
