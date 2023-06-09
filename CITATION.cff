@@ -5,9 +5,8 @@ message: "You can cite greCy as it is indicated below."
 authors:
 - family-names: "Myerston"
   given-names: "Jacobo"
-- family-names: "Lopez"
+- family-names: "López"
   given-names: "Jose"
-  orcid: "https://orcid.org/0000-0003-0865-9494"
 title: "greCy: Ancient Greek spaCy models for Natural Language Processing in Python"
 version: 1.0
 date-released: 2023
