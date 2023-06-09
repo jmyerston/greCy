@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+preferred-citation:
+type: software
+message: "You can cite greCy as it is indicated below."
+authors:
+- family-names: "Myerston"
+  given-names: "Jacobo"
+- family-names: "Lopez"
+  given-names: "Jose"
+  orcid: "https://orcid.org/0000-0003-0865-9494"
+title: "greCy: Ancient Greek spaCy models for Natural Language Processing in Python"
+version: 1.0
+date-released: 2023
+url: "https://github.com/jmyerston/greCy"
