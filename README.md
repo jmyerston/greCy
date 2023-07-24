@@ -3,7 +3,7 @@
 
 greCy is a set of spaCy ancient Greek models and its installer. The models were trained using the [Perseus](https://universaldependencies.org/treebanks/grc_perseus/index.html) and  [Proiel UD](https://universaldependencies.org/treebanks/grc_proiel/index.html) corpora. Prior to installation, the models can be tested on my [Ancient Greek Syntax Analyzer](https://huggingface.co/spaces/Jacobo/syntax) on the [Hugging Face Hub](https://huggingface.co/), where you can also check the various performance metrics of each model.
 
-In general, models trained with the Proiel corpus perform better in POS Tagging and Dependency Parsing, while Perseus models  are better at sentence segmentation using punctuation, and Morphological Analysis. Lemmatization is similar across models because they share the same neural lemmatizer in two variants: the most accurate lemmatizer was trained with word vectors, and the other was not The best models for lemmatization are the large (_lg) models. 
+In general, models trained with the Proiel corpus perform better in POS Tagging and Dependency Parsing, while Perseus models are better at sentence segmentation using punctuation, and Morphological Analysis. Lemmatization is similar across models because they share the same neural lemmatizer in two variants: the most accurate lemmatizer was trained with word vectors, and the other was not. The best models for lemmatization are the large models . 
 
 ### Installation
 
@@ -13,7 +13,7 @@ First install the python package as usual:
 pip install -U grecy
 ```
 
-Once the package is successfully installed, you can proceed any of the followings models:
+Once the package is successfully installed, you can proceed to dowload and install any of the followings models:
 
 * grc_perseus_sm
 * grc_proiel_sm
@@ -28,7 +28,7 @@ The models can be installed from the terminal with the commands below:
 ```
 python -m grecy install MODEL
 ```
-where you replace MODEL by any of the model names listed above.  The suffixes after the corpus name _sm, _lg, and _trf indicate the size of the model which directly depend on the word embedding used to train the models. The smallest models end in _sm (small) and the less accurate ones: they are good for testing and building lightweight apps. The _lg and _trf are the large and transformers models which are more accurate. The _lg were trained using fasttext word vectors in the spaCy floret version, and the _trf models were using a special version of BERT, pertained by ourselves with the largest Ancient Greek corpus we could find (see more below). If you would like to work with word similarity, choose the _lg models.  The vectors for large models were trained with the TLG corpus using [floret](https://github.com/explosion/floret), a fork of [fastText](https://fasttext.cc/).
+where you replace MODEL by any of the model names listed above.  The suffixes after the corpus name, _sm, _lg, and _trf, indicate the size of the model which directly depends on the word embedding used for training. The smallest models end in _sm (small) and are the less accurate ones: they are good for testing and building lightweight apps. The _lg and _trf are the large and transformers models which are more accurate. The _lg were trained using fasttext word vectors in the spaCy floret version, and the _trf models were trained using a special version of BERT, pertained by ourselves with the largest available Ancient Greek corpus, namely, the TLG.  The vectors for large models were also trained with the TLG corpus.
 
 
 ### Loading
@@ -89,6 +89,7 @@ For a general comparison, I share here the metrics of the Proiel transformer grc
 | spaCy   | 100     | 99.38     | 96.75 | 96.82 | 95.16 | 97.33 | 81.92 | 77.26 |
 | Trankit | 99.71 | 98.70 |93.97 	| 87.25 |91.66 	  | 88.52  |83.48 	|78.56  |
 | Stanza  | 99.8	 | 98.85	| 92.54	| 85.22	| 91.06	| 88.26	| 78.75 |73.35  |
+| OdyCy | -	| 84.09	| 97.32	| 94.18	| 94.09	| 93.89	| 81.40 |76.42 |
 
 ### Caveat 
 
