@@ -1,9 +1,9 @@
 # greCy
 ## Ancient Greek models for spaCy
 
-greCy is a set of spaCy ancient Greek models and its installer. The models were trained using the [Perseus](https://universaldependencies.org/treebanks/grc_perseus/index.html) and  [Proiel UD](https://universaldependencies.org/treebanks/grc_proiel/index.html) corpora. Prior to installation, the models can be tested on my [Ancient Greek Syntax Analyzer](https://huggingface.co/spaces/Jacobo/syntax) on the [Hugging Face Hub](https://huggingface.co/), where you can also check the various performance metrics of each model.
+greCy is a set of spaCy ancient Greek models and its installer. The models were trained using the [Perseus](https://universaldependencies.org/treebanks/grc_perseus/index.html) and  [Proiel UD](https://universaldependencies.org/treebanks/grc_proiel/index.html) corpora. 
 
-In general, models trained with the Proiel corpus perform better in POS Tagging and Dependency Parsing, while Perseus models are better at sentence segmentation using punctuation, and Morphological Analysis. Lemmatization is similar across models because they share the same neural lemmatizer in two variants: the most accurate lemmatizer was trained with word vectors, and the other was not. The best models for lemmatization are the large models . 
+In general, models trained with the Proiel corpus perform better in POS Tagging and Dependency Parsing, while Perseus models are better at sentence segmentation using punctuation, and Morphological Analysis. Lemmatization is similar across models because they share the same look-up table. 
 
 ### Installation
 
@@ -67,37 +67,10 @@ Unfortunaly, there is no consensus among the different internet projects that of
 I offer here the project file, I use to train the models in case you want to customize your models for your specific needs. The six standard spaCy models (small, large, and transformer) are built and packaged using the following commands:
 
 
-1. python -m spacy project assets
-2. python -m spacy project run all
+1. python -m weasel assets
+2. python -m weasel run all
 
-### Performance
 
-For a general comparison, I share here the metrics of the Proiel transformer grc_proiel_trf and grc_perseys_trf.  These models use for fine-tuning a transformer that was specifically trained to be used with spaCy and, consequently, makes the model much smaller than the alternatives offered by Python nlp libraries such as Stanza and Trankit (for more information on the transformer model and how it was trained see [aristoBERTo](https://huggingface.co/Jacobo/aristoBERTo)).  The greCy's _trf models outperform Stanza and Trankit in most metrics and have the advantage that their size is only ~430 MB vs.  the 1.2 GB of the Trankit model trained with XLM Roberta.  See table  below:
-
-#### Proiel
-
-| Library | Tokens	| Sentences	| UPOS	| XPOS	| UFeats	|Lemmas	|UAS	  |LAS	  |
-|  ---    | ---     | ---       | ---   | ---   | ---     | ---   | ---   | ---   |
-| spaCy   | 100     | 71.74 | 98.45 | 98.53 | 94.18 | 96.59 | 85.79 | 82.30 |
-| Trankit | 99.91 	| 67.60     |97.86 	| 97.93 |93.03 	  | 97.50 |85.63 	|82.31  |
-| Stanza  | 100	    | 51.65	    | 97.38	| 97.75	| 92.09	  | 97.42	| 80.34 |76.33  |
-
-#### Perseus
-
-| Library | Tokens	| Sentences	| UPOS	| XPOS	| UFeats	|Lemmas	|UAS	  |LAS	  |
-|  ---    | ---     | ---       | ---   | ---   | ---     | ---   | ---   | ---   |
-| spaCy   | 100     | 99.38     | 96.75 | 96.82 | 95.16 | 97.33 | 81.92 | 77.26 |
-| Trankit | 99.71 | 98.70 |93.97 	| 87.25 |91.66 	  | 88.52  |83.48 	|78.56  |
-| Stanza  | 99.8	 | 98.85	| 92.54	| 85.22	| 91.06	| 88.26	| 78.75 |73.35  |
-| OdyCy | -	| 84.09	| 97.32	| 94.18	| 94.09	| 93.89	| 81.40 |76.42 |
-
-### Caveat 
-
-Metrics, however, can be misleading. This becomes particularly obvious when you work with texts that are not part of the training and evaluation dataset. In addition, greCy's lemmatizers (in all sizes) exhibit lower benchmarks in comparison to the above mentioned nlp libraries, but they have a substantially larger vocabulary than the Stanza and Trankit models because they were trained with a complemental lemma corpus derived from Giussepe G.A. Celano [lemmatized corpus](https://github.com/gcelano/LemmatizedAncientGreekXML). This means that the greCy's lemmatizers perform better than Trankit and Stanza when processing texts not included in the Perseus and Proiel datasets. 
-
-### Future Developments
-
-This project was initiated as part of the [Diogenet Project](https://diogenet.ucsd.edu/), a research initiative that focuses on the automatic extraction of social relations from Ancient Greek texts. As part of this project, greCy will add first, in a non distant future,  a NER pipeline for the identification of entities; later I hope also to offer pipeline for the extraction of social relation from Greek texts. This pipeline should contribute to the study of social networks in the ancient world. 
 
 
 

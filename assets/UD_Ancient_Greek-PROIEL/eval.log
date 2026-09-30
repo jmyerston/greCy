@@ -1,0 +1,79 @@
+Running the following version of UD tools:
+commit 3478a99bb195eb8749c367af4f7b3fd357a12a4c
+Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
+Date:   Tue Nov 2 22:17:19 2021 +0100
+Evaluating the following revision of UD_Ancient_Greek-PROIEL:
+commit 291e7e16a861e6ec43dd6f167a5f7051677f450c
+Author: Dan Zeman <zeman@ufal.mff.cuni.cz>
+Date:   Thu May 13 08:47:41 2021 +0200
+Size: counted 213999 of 213999 words (nodes).
+Size: min(0, log((N/1000)**2)) = 10.7319426842275.
+Size: maximum value 13.815511 is for 1000000 words or more.
+Split: Found more than 10000 training words.
+Split: Found at least 10000 development words.
+Split: Found at least 10000 test words.
+Lemmas: source of annotation (from README) factor is 0.8.
+Universal POS tags: 14 out of 17 found in the corpus.
+Universal POS tags: source of annotation (from README) factor is 0.8.
+Features: 160388 out of 213999 total words have one or more features.
+Features: source of annotation (from README) factor is 0.8.
+Universal relations: 30 out of 37 found in the corpus.
+Universal relations: source of annotation (from README) factor is 0.8.
+Udapi:
+               TOTAL       5500
+Udapi: found 5500 bugs.
+Udapi: worst expected case (threshold) is one bug per 10 words. There are 213999 words.
+Genres: found 2 out of 17 known.
+validate.py --lang grc --max-err=10 UD_Ancient_Greek-PROIEL/grc_proiel-ud-dev.conllu
+[Line 746 Sent 64461 Node 6]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'iobj'.
+[Line 1649 Sent 65167 Node 14]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'appos'.
+[Line 1652 Sent 65167 Node 17]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'appos'.
+[Line 1659 Sent 65167 Node 24]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'orphan'.
+[Line 4568 Sent 70572 Node 13]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'orphan'.
+[Line 4572 Sent 70572 Node 17]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'orphan'.
+[Line 4983 Sent 70592 Node 32]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'orphan'.
+[Line 6858 Sent 72078 Node 15]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'obl'.
+[Line 11811 Sent 59959 Node 22]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'appos'.
+...suppressing further errors regarding Syntax
+Syntax errors: 11
+*** FAILED *** with 11 errors
+Exit code: 1
+validate.py --lang grc --max-err=10 UD_Ancient_Greek-PROIEL/grc_proiel-ud-test.conllu
+[Line 1320 Sent 65248 Node 4]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'nmod'.
+[Line 2502 Sent 75006 Node 28]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'obl'.
+[Line 3982 Sent 70102 Node 9]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'obj'.
+[Line 4267 Sent 70120 Node 8]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'appos'.
+[Line 11709 Sent 22232 Node 19]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'appos'.
+Syntax errors: 5
+*** FAILED *** with 5 errors
+Exit code: 1
+validate.py --lang grc --max-err=10 UD_Ancient_Greek-PROIEL/grc_proiel-ud-train.conllu
+[Line 27 Sent 64362 Node 24]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'dislocated'.
+[Line 28 Sent 64362 Node 25]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'dislocated'.
+[Line 30 Sent 64362 Node 27]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'orphan'.
+[Line 6451 Sent 64773 Node 22]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'orphan'.
+[Line 6452 Sent 64773 Node 23]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'orphan'.
+[Line 6455 Sent 64773 Node 26]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'orphan'.
+[Line 7232 Sent 81355 Node 10]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'obj'.
+[Line 8449 Sent 64879 Node 7]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'nmod'.
+[Line 8481 Sent 64880 Node 11]: [L5 Morpho aux-lemma] 'ἔχω' is not an auxiliary verb in language [grc]
+[Line 8552 Sent 64882 Node 23]: [L3 Syntax orphan-parent] The parent of 'orphan' should normally be 'conj' but it is 'dislocated'.
+...suppressing further errors regarding Syntax
+[Line 241600 Sent 33226 Node 40]: [L5 Morpho aux-lemma] 'ἀγοράζω' is not an auxiliary verb in language [grc]
+[Line 241602 Sent 33226 Node 42]: [L5 Morpho aux-lemma] 'πωλέω' is not an auxiliary verb in language [grc]
+Morpho errors: 3
+Syntax errors: 226
+*** FAILED *** with 229 errors
+Exit code: 1
+Validity: 0.01
+(weight=0.0769230769230769) * (score{features}=0.8) = 0.0615384615384615
+(weight=0.0769230769230769) * (score{genres}=0.117647058823529) = 0.00904977375565611
+(weight=0.0769230769230769) * (score{lemmas}=0.8) = 0.0615384615384615
+(weight=0.256410256410256) * (score{size}=0.776803914643661) = 0.199180490934272
+(weight=0.0512820512820513) * (score{split}=1) = 0.0512820512820513
+(weight=0.0769230769230769) * (score{tags}=0.658823529411765) = 0.0506787330316742
+(weight=0.307692307692308) * (score{udapi}=0.742989453221744) = 0.228612139452844
+(weight=0.0769230769230769) * (score{udeprels}=0.648648648648649) = 0.0498960498960499
+(TOTAL score=0.711776161429471) * (availability=1) * (validity=0.01) = 0.00711776161429471
+STARS = 0
+UD_Ancient_Greek-PROIEL	0.00711776161429471	0

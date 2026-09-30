@@ -5,3 +5,10 @@ vectors
 wandb
 .DS_Store
 project.lock
+__pycache__/
+*.bak
+*.bak2
+*.bak-lookup
+assets/*.floret
+corpus/lemmatizer/
+eval_lemmatizers/
