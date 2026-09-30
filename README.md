@@ -7,13 +7,7 @@ In general, models trained with the Proiel corpus perform better in POS Tagging 
 
 ### Installation
 
-First install the python package as usual:
-
-``` bash
-pip install -U grecy
-```
-
-Once the package is successfully installed, you can proceed to dowload and install any of the followings models:
+The `grecy` installer package has been deprecated. To install a model, download the corresponding wheel (`.whl`) file from the [Releases page](https://github.com/jmyerston/greCy/releases) and install it directly with pip:
 
 * grc_perseus_sm
 * grc_proiel_sm
@@ -21,14 +15,21 @@ Once the package is successfully installed, you can proceed to dowload and insta
 * grc_proiel_lg
 * grc_perseus_trf
 * grc_proiel_trf
+* grc_ner_trf
 
+For example, to install grc_proiel_sm from the [v3.8 release](https://github.com/jmyerston/greCy/releases/tag/v3.8):
 
-The models can be installed from the terminal with the commands below:
-
+``` bash
+pip install https://github.com/jmyerston/greCy/releases/download/v3.8/grc_proiel_sm-3.8-py3-none-any.whl
 ```
-python -m grecy install MODEL
+
+or, if you already downloaded the file:
+
+``` bash
+pip install grc_proiel_sm-3.8-py3-none-any.whl
 ```
-where you replace MODEL by any of the model names listed above.  The suffixes after the corpus name, _sm, _lg, and _trf, indicate the size of the model which directly depends on the word embedding used for training. The smallest models end in _sm (small) and are the less accurate ones: they are good for testing and building lightweight apps. The _lg and _trf are the large and transformers models which are more accurate. The _lg were trained using fasttext word vectors in the spaCy floret version, and the _trf models were trained using a special version of BERT, pertained by ourselves with the largest available Ancient Greek corpus, namely, the TLG.  The vectors for large models were also trained with the TLG corpus.
+
+The suffixes after the corpus name, _sm, _lg, and _trf, indicate the size of the model which directly depends on the word embedding used for training. The smallest models end in _sm (small) and are the less accurate ones: they are good for testing and building lightweight apps. The _lg and _trf are the large and transformers models which are more accurate. The _lg were trained using fasttext word vectors in the spaCy floret version, and the _trf models were trained using a special version of BERT, pertained by ourselves with the largest available Ancient Greek corpus, namely, the TLG.  The vectors for large models were also trained with the TLG corpus.
 
 
 ### Loading
