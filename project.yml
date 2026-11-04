@@ -26,6 +26,8 @@ vars:
   pack_name_ner: "ner"
 
   package_version: 3.8
+  pymorpheus_dir: "../pymorpheus"
+  pymorpheus_wheel: "pymorpheus-0.1.0.dev0-py3-none-any.whl"
   gpu: 0
 
 # These are the directories that the project needs. The project CLI will make
@@ -63,6 +65,7 @@ workflows:
     - train-large-perseus
     - train-transformer-proiel
     - train-transformer-perseus
+    - pack-pymorpheus
     - pack-small-proiel
     - pack-small-perseus
     - pack-large-proiel
@@ -233,6 +236,15 @@ commands:
 
 ## Packing
 
+  - name: pack-pymorpheus
+    help: "Build the pymorpheus wheel (not on PyPI) for the GitHub release and write the meta.json override that makes the large/transformer models require it by URL"
+    script:
+      - "python -m pip wheel --no-deps ${vars.pymorpheus_dir} -w packages/pymorpheus/dist"
+      - "python scripts/write_meta_requirements.py ${vars.package_version} ${vars.pymorpheus_wheel} packages/meta_requirements.json"
+    outputs:
+      - "packages/pymorpheus/dist/${vars.pymorpheus_wheel}"
+      - "packages/meta_requirements.json"
+
   - name: pack-small-proiel
     help: "pack the trained model"
     script:
@@ -254,9 +266,9 @@ commands:
   - name: pack-large-proiel
     help: "pack the trained model so it can be installed"
     script:
-      - "python -m spacy package training/large/proiel/model-best packages --name ${vars.pack_name_proiel}_lg --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path configs/meta_requirements.json"
+      - "python -m spacy package training/large/proiel/model-best packages --name ${vars.pack_name_proiel}_lg --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta_requirements.json"
     deps:
-      - "configs/meta_requirements.json"
+      - "packages/meta_requirements.json"
       - "training/large/proiel/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.pack_name_proiel}_lg-${vars.package_version}/dist/grc_${vars.pack_name_proiel}config_lg-${vars.package_version}.tar.gz"
@@ -264,9 +276,9 @@ commands:
   - name: pack-large-perseus
     help: "pack the trained model so it can be installed"
     script:
-      - "python -m spacy package training/large/perseus/model-best packages --name ${vars.pack_name_perseus}_lg --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path configs/meta_requirements.json"
+      - "python -m spacy package training/large/perseus/model-best packages --name ${vars.pack_name_perseus}_lg --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta_requirements.json"
     deps:
-      - "configs/meta_requirements.json"
+      - "packages/meta_requirements.json"
       - "training/large/perseus/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.pack_name_perseus}_lg-${vars.package_version}/dist/grc_${vars.pack_name_perseus}config_lg-${vars.package_version}.tar.gz"
@@ -274,9 +286,9 @@ commands:
   - name: pack-transformer-proiel
     help: "pack the trained model so it can be installed"
     script:
-      - "python -m spacy package training/transformer/proiel/model-best packages --name ${vars.pack_name_proiel}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path configs/meta_requirements.json"
+      - "python -m spacy package training/transformer/proiel/model-best packages --name ${vars.pack_name_proiel}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta_requirements.json"
     deps:
-      - "configs/meta_requirements.json"
+      - "packages/meta_requirements.json"
       - "training/transformer/proiel/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.pack_name_proiel}_trf-${vars.package_version}/dist/grc_${vars.pack_name_proiel}config_trf-${vars.package_version}.tar.gz"
@@ -293,9 +305,9 @@ commands:
   - name: pack-transformer-perseus
     help: "pack the trained model so it can be installed"
     script:
-      - "python -m spacy package training/transformer/perseus/model-best packages --name ${vars.pack_name_perseus}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path configs/meta_requirements.json"
+      - "python -m spacy package training/transformer/perseus/model-best packages --name ${vars.pack_name_perseus}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta_requirements.json"
     deps:
-      - "configs/meta_requirements.json"
+      - "packages/meta_requirements.json"
       - "training/transformer/perseus/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.pack_name_perseus}_trf-${vars.package_version}/dist/grc_${vars.pack_name_perseus}config_trf-${vars.package_version}.tar.gz"
@@ -324,6 +336,7 @@ commands:
       - "packages/${vars.lang}_${vars.pack_name_proiel}_trf-${vars.package_version}"
       - "packages/${vars.lang}_${vars.pack_name_perseus}_trf-${vars.package_version}"
       - "packages/${vars.lang}_${vars.pack_name_ner}_trf-${vars.package_version}"
+      - "packages/pymorpheus/dist/${vars.pymorpheus_wheel}"
 
 ## Cleaning Up
 

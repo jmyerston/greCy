@@ -1,5 +1,5 @@
 spacy>=3.5.3
-pymorpheus>=0.1.0
+# pymorpheus (not on PyPI): pip install -e ../pymorpheus, or the wheel attached to the greCy release
 wandb
 spacy-huggingface-hub
 weasel
