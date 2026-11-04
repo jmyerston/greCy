@@ -26,8 +26,8 @@ vars:
   pack_name_ner: "ner"
 
   package_version: 3.8.18a1
-  pymorpheus_dir: "../pymorpheus"
-  pymorpheus_wheel: "pymorpheus-0.1.0.dev0-py3-none-any.whl"
+  # pymorpheus is not on PyPI: the large and transformer models require the wheel of its GitHub release
+  pymorpheus_req: "pymorpheus @ https://github.com/jmyerston/pymorpheus/releases/download/v0.1.0.dev0/pymorpheus-0.1.0.dev0-py3-none-any.whl"
   # transformer weights are saved without embeddings.position_ids (transformers >= 4.31)
   transformers_req: "transformers>=4.31.0,<4.50.0"
   # extra flags for `gh release create` (empty for a final release)
@@ -76,7 +76,6 @@ workflows:
     - evaluate-transformer-proiel
     - evaluate-transformer-perseus
     - evaluate-transformer-ner
-    - pack-pymorpheus
     - pack-small-proiel
     - pack-small-perseus
     - pack-large-proiel
@@ -252,13 +251,6 @@ commands:
 
 ## Packing
 
-  - name: pack-pymorpheus
-    help: "Build the pymorpheus wheel (not on PyPI) that is attached to the GitHub release; the large and transformer models require it by URL"
-    script:
-      - "python -m pip wheel --no-deps ${vars.pymorpheus_dir} -w packages/pymorpheus/dist"
-    outputs:
-      - "packages/pymorpheus/dist/${vars.pymorpheus_wheel}"
-
 ## Benchmarks (held-out test sets; NEReus has no test set, so its dev set)
 
   - name: evaluate-small-proiel
@@ -361,7 +353,7 @@ commands:
     help: "Package training/large/proiel/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_proiel}_lg-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/large-proiel.json --treebank PROIEL --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/large-proiel.json --req 'pymorpheus @ https://github.com/jmyerston/greCy/releases/download/v${vars.package_version}/${vars.pymorpheus_wheel}'"
+      - "python scripts/write_package_meta.py packages/meta/large-proiel.json --treebank PROIEL --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/large-proiel.json --req '${vars.pymorpheus_req}'"
       - "python -m spacy package training/large/proiel/model-best packages --name ${vars.pack_name_proiel}_lg --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/large-proiel.json"
     deps:
       - "training/large/proiel/model-best"
@@ -373,7 +365,7 @@ commands:
     help: "Package training/large/perseus/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_perseus}_lg-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/large-perseus.json --treebank Perseus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/large-perseus.json --req 'pymorpheus @ https://github.com/jmyerston/greCy/releases/download/v${vars.package_version}/${vars.pymorpheus_wheel}'"
+      - "python scripts/write_package_meta.py packages/meta/large-perseus.json --treebank Perseus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/large-perseus.json --req '${vars.pymorpheus_req}'"
       - "python -m spacy package training/large/perseus/model-best packages --name ${vars.pack_name_perseus}_lg --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/large-perseus.json"
     deps:
       - "training/large/perseus/model-best"
@@ -385,7 +377,7 @@ commands:
     help: "Package training/transformer/proiel/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_proiel}_trf-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/transformer-proiel.json --treebank PROIEL --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/transformer-proiel.json --req 'pymorpheus @ https://github.com/jmyerston/greCy/releases/download/v${vars.package_version}/${vars.pymorpheus_wheel}' --req '${vars.transformers_req}'"
+      - "python scripts/write_package_meta.py packages/meta/transformer-proiel.json --treebank PROIEL --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/transformer-proiel.json --req '${vars.pymorpheus_req}' --req '${vars.transformers_req}'"
       - "python -m spacy package training/transformer/proiel/model-best packages --name ${vars.pack_name_proiel}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/transformer-proiel.json"
     deps:
       - "training/transformer/proiel/model-best"
@@ -397,7 +389,7 @@ commands:
     help: "Package training/transformer/perseus/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_perseus}_trf-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/transformer-perseus.json --treebank Perseus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/transformer-perseus.json --req 'pymorpheus @ https://github.com/jmyerston/greCy/releases/download/v${vars.package_version}/${vars.pymorpheus_wheel}' --req '${vars.transformers_req}'"
+      - "python scripts/write_package_meta.py packages/meta/transformer-perseus.json --treebank Perseus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/transformer-perseus.json --req '${vars.pymorpheus_req}' --req '${vars.transformers_req}'"
       - "python -m spacy package training/transformer/perseus/model-best packages --name ${vars.pack_name_perseus}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/transformer-perseus.json"
     deps:
       - "training/transformer/perseus/model-best"
@@ -429,13 +421,11 @@ commands:
 ## Publishing to GitHub
 
   - name: publish
-    help: "Create (or update) the GitHub release v${vars.package_version}: release notes with each packaged model's test scores and README (scripts/release_notes.py); upload this version's model wheels and the pymorpheus wheel"
+    help: "Create (or update) the GitHub release v${vars.package_version}: release notes with each packaged model's test scores and README (scripts/release_notes.py); upload this version's model wheels"
     script:
       - "python scripts/release_notes.py ${vars.package_version} packages/RELEASE_NOTES.md"
       - "bash -c \"gh release create v${vars.package_version} --title 'greCy v${vars.package_version}' --notes-file packages/RELEASE_NOTES.md ${vars.release_flags} || gh release edit v${vars.package_version} --notes-file packages/RELEASE_NOTES.md\""
-      - "bash -c \"gh release upload v${vars.package_version} packages/*-${vars.package_version}/dist/*.whl packages/pymorpheus/dist/${vars.pymorpheus_wheel} --clobber\""
-    deps:
-      - "packages/pymorpheus/dist/${vars.pymorpheus_wheel}"
+      - "bash -c \"gh release upload v${vars.package_version} packages/*-${vars.package_version}/dist/*.whl --clobber\""
 
 ## Cleaning Up
 
