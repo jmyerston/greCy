@@ -15,14 +15,12 @@ The main lemmatizer is Morpheus, the Perseus morphological analyser, through [py
 ... morphologizer, tagger, parser, lemmatizer (look-up), morpheus_lemmatizer, propn_lemmatizer ...
 ```
 
-Lemma accuracy on the UD dev/test sets with gold POS and morphology, compared with the previous look-up set-up:
+Lemma accuracy of `grc_proiel_trf`, the released version 3.8 (look-up lemmatizer) compared with the experimental 3.8.18a1 (Morpheus): each model's full pipeline with its own predicted POS and morphology, on the gold tokens of greCy's UD PROIEL dev and test sets, punctuation excluded. The gold lemmata include greCy's corrections.
 
-| | look-up + propn | Morpheus + propn |
-|---|---:|---:|
-| PROIEL dev | 97.67 | 98.09 |
-| PROIEL test | 98.01 | 98.23 |
-| Perseus dev | 96.94 | 97.36 |
-| Perseus test | 96.32 | 96.47 |
+| `grc_proiel_trf` | tokens | 3.8 | 3.8.18a1 |
+|---|---:|---:|---:|
+| PROIEL dev | 13,652 | 97.90 | **97.97** |
+| PROIEL test | 13,314 | 98.14 | **98.22** |
 
 The small (`_sm`) models do not use Morpheus: they lemmatize with the look-up table and the `propn_lemmatizer` only, and do not need pymorpheus.
 
