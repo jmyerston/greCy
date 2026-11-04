@@ -9,7 +9,7 @@ In general, models trained with the Proiel corpus perform better in POS Tagging 
 
 ### Lemmatization
 
-The main lemmatizer is Morpheus, the Perseus morphological analyser, through pymorpheus, a pure-Python port. Its wheel is attached to each greCy release, and pip installs it automatically with the large and transformer models. For each word the `morpheus_lemmatizer` component picks the Morpheus analysis that best fits the part of speech and morphology predicted by the model, and maps its lemma to the conventions of the treebank the model was trained on (for example εἶπον → λέγω). The greCy look-up table breaks ties and is used for words Morpheus does not know; proper nouns are then checked by the `propn_lemmatizer` component. The pipeline is:
+The main lemmatizer is Morpheus, the Perseus morphological analyser, through [pymorpheus](https://github.com/jmyerston/pymorpheus), a pure-Python port. Its wheel is attached to each greCy release, and pip installs it automatically with the large and transformer models. For each word the `morpheus_lemmatizer` component picks the Morpheus analysis that best fits the part of speech and morphology predicted by the model, and maps its lemma to the conventions of the treebank the model was trained on (for example εἶπον → λέγω). The greCy look-up table breaks ties and is used for words Morpheus does not know; proper nouns are then checked by the `propn_lemmatizer` component. The pipeline is:
 
 ```
 ... morphologizer, tagger, parser, lemmatizer (look-up), morpheus_lemmatizer, propn_lemmatizer ...
