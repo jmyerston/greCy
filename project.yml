@@ -185,7 +185,7 @@ commands:
     help: "Train ${vars.treebank_proiel}"
     script:
       - "mkdir -p training/transformer/proiel"
-      - "python -m spacy train configs/${vars.config_trf}.cfg --output training/transformer/proiel --gpu-id ${vars.gpu} --paths.train corpus/parser/proiel/train --paths.dev corpus/parser/proiel/dev --nlp.lang=${vars.lang} --code scripts/custom_functions.py"
+      - "python -m spacy train configs/${vars.config_trf}.cfg --output training/transformer/proiel --gpu-id ${vars.gpu} --paths.train corpus/parser/proiel/train/grc_proiel-ud-train.spacy --paths.dev corpus/parser/proiel/dev/grc_proiel-ud-dev.spacy --nlp.lang=${vars.lang} --code scripts/custom_functions.py"
     deps:
       - "corpus/parser/proiel/train/grc_proiel-ud-train.spacy"
       - "corpus/parser/proiel/dev/grc_proiel-ud-dev.spacy"
@@ -197,7 +197,7 @@ commands:
     help: "Train ${vars.treebank_perseus}"
     script:
       - "mkdir -p training/transformer/perseus"
-      - "python -m spacy train configs/${vars.config_trf}.cfg --output training/transformer/perseus --gpu-id ${vars.gpu} --paths.train corpus/parser/perseus/train --paths.dev corpus/parser/perseus/dev --nlp.lang=${vars.lang} --code scripts/custom_functions.py"
+      - "python -m spacy train configs/${vars.config_trf}.cfg --output training/transformer/perseus --gpu-id ${vars.gpu} --paths.train corpus/parser/perseus/train/grc_perseus-ud-train.spacy --paths.dev corpus/parser/perseus/dev/grc_perseus-ud-dev.spacy --nlp.lang=${vars.lang} --code scripts/custom_functions.py"
     deps:
       - "corpus/parser/perseus/train/grc_perseus-ud-train.spacy"
       - "corpus/parser/perseus/dev/grc_perseus-ud-dev.spacy"
@@ -236,7 +236,7 @@ commands:
   - name: pack-small-proiel
     help: "pack the trained model"
     script:
-      - "python -m spacy package training/small/proiel/model-best packages --name ${vars.pack_name_proiel}_sm --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/small/proiel/model-best packages --name ${vars.pack_name_proiel}_sm --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py"
     deps:
       - "training/small/proiel"
     outputs_no_cache:
@@ -245,7 +245,7 @@ commands:
   - name: pack-small-perseus
     help: "pack the trained model"
     script:
-      - "python -m spacy package training/small/perseus/model-best packages --name ${vars.pack_name_perseus}_sm --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/small/perseus/model-best packages --name ${vars.pack_name_perseus}_sm --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py"
     deps:
       - "training/small/perseus"
     outputs_no_cache:
@@ -254,8 +254,9 @@ commands:
   - name: pack-large-proiel
     help: "pack the trained model so it can be installed"
     script:
-      - "python -m spacy package training/large/proiel/model-best packages --name ${vars.pack_name_proiel}_lg --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/large/proiel/model-best packages --name ${vars.pack_name_proiel}_lg --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path configs/meta_requirements.json"
     deps:
+      - "configs/meta_requirements.json"
       - "training/large/proiel/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.pack_name_proiel}_lg-${vars.package_version}/dist/grc_${vars.pack_name_proiel}config_lg-${vars.package_version}.tar.gz"
@@ -263,8 +264,9 @@ commands:
   - name: pack-large-perseus
     help: "pack the trained model so it can be installed"
     script:
-      - "python -m spacy package training/large/perseus/model-best packages --name ${vars.pack_name_perseus}_lg --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/large/perseus/model-best packages --name ${vars.pack_name_perseus}_lg --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path configs/meta_requirements.json"
     deps:
+      - "configs/meta_requirements.json"
       - "training/large/perseus/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.pack_name_perseus}_lg-${vars.package_version}/dist/grc_${vars.pack_name_perseus}config_lg-${vars.package_version}.tar.gz"
@@ -272,8 +274,9 @@ commands:
   - name: pack-transformer-proiel
     help: "pack the trained model so it can be installed"
     script:
-      - "python -m spacy package training/transformer/proiel/model-best packages --name ${vars.pack_name_proiel}_trf --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/transformer/proiel/model-best packages --name ${vars.pack_name_proiel}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path configs/meta_requirements.json"
     deps:
+      - "configs/meta_requirements.json"
       - "training/transformer/proiel/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.pack_name_proiel}_trf-${vars.package_version}/dist/grc_${vars.pack_name_proiel}config_trf-${vars.package_version}.tar.gz"
@@ -281,7 +284,7 @@ commands:
   - name: pack-transformer-ner
     help: "pack the trained model so it can be installed"
     script:
-      - "python -m spacy package training/transformer/ner/model-best packages --name ${vars.pack_name_ner}_trf --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/transformer/ner/model-best packages --name ${vars.pack_name_ner}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py"
     deps:
       - "training/transformer/ner/model-best"
     outputs_no_cache:
@@ -290,8 +293,9 @@ commands:
   - name: pack-transformer-perseus
     help: "pack the trained model so it can be installed"
     script:
-      - "python -m spacy package training/transformer/perseus/model-best packages --name ${vars.pack_name_perseus}_trf --version ${vars.package_version} --build wheel --force"
+      - "python -m spacy package training/transformer/perseus/model-best packages --name ${vars.pack_name_perseus}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path configs/meta_requirements.json"
     deps:
+      - "configs/meta_requirements.json"
       - "training/transformer/perseus/model-best"
     outputs_no_cache:
       - "packages/${vars.lang}_${vars.pack_name_perseus}_trf-${vars.package_version}/dist/grc_${vars.pack_name_perseus}config_trf-${vars.package_version}.tar.gz"

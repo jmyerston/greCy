@@ -11781,7 +11781,7 @@
 2	δὲ	δέ	ADV	D-	_	6	advmod	_	_
 3	τὴν	ὁ	DET	P-	Case=Acc|Gender=Fem|Number=Sing	4	det	_	_
 4	Ἱππολύτην	Ἱππολύτη	PROPN	Ne	Case=Acc|Gender=Fem|Number=Sing	6	obl	_	_
-5	Φαίδραν	φαίδρα	PROPN	Ne	Case=Acc|Gender=Fem|Number=Sing	6	obj	_	_
+5	Φαίδραν	Φαίδρα	PROPN	Ne	Case=Acc|Gender=Fem|Number=Sing	6	obj	_	_
 6	ἔσχεν	ἔχω	VERB	V-	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	SpaceAfter=No
 7	.	.	PUNCT	Z	_	6	punct	_	_
 
@@ -13759,7 +13759,7 @@
 3	ὁ	ὁ	DET	P-	Case=Nom|Gender=Masc|Number=Sing	1	det	_	_
 4	Χῖος	Χῖος	ADJ	A-	Case=Nom|Gender=Masc|Number=Sing	1	nmod	_	_
 5	τὸν	ὁ	DET	P-	Case=Acc|Gender=Masc|Number=Sing	6	det	_	_
-6	Ὕπνον	ὕπνος	PROPN	Ne	Case=Acc|Gender=Masc|Number=Sing	8	nsubj	_	_
+6	Ὕπνον	Ὕπνος	PROPN	Ne	Case=Acc|Gender=Masc|Number=Sing	8	nsubj	_	_
 7	φήσας	φημί	VERB	V-	Case=Nom|Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part|Voice=Act	14	advcl	_	_
 8	ἐρᾶν	ἐράω	VERB	V-	Tense=Pres|VerbForm=Inf|Voice=Act	7	ccomp	_	_
 9	τοῦ	ὁ	DET	P-	Case=Gen|Gender=Masc|Number=Sing	10	det	_	_
@@ -15461,7 +15461,7 @@
 # sent_id = tlg0008.tlg001.perseus-grc1.13.tb.xml@405
 # text = καὶ Λαῒς οὖν ὀρθῶς νομίζοιτʼ ἂν τέρας.
 1	καὶ	καί	ADV	D-	_	2	advmod	_	_
-2	Λαῒς	ληΐς	PROPN	Ne	Case=Nom|Gender=Fem|Number=Sing	5	nsubj	_	_
+2	Λαῒς	Λαΐς	PROPN	Ne	Case=Nom|Gender=Fem|Number=Sing	5	nsubj	_	_
 3	οὖν	οὖν	ADV	D-	_	5	advmod	_	_
 4	ὀρθῶς	ὀρθός	ADV	D-	_	5	advmod	_	_
 5	νομίζοιτʼ	νομίζω	VERB	V-	Mood=Opt|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Mid	0	root	_	_
@@ -17323,7 +17323,7 @@
 5	τῷ	ὁ	DET	P-	Case=Dat|Gender=Neut|Number=Sing	9	det	_	_
 6	περὶ	περί	ADP	R-	_	8	case	_	_
 7	Ἐνδόξων	ἔνδοξος	ADJ	A-	Case=Gen|Gender=Masc|Number=Plur	8	nmod	_	_
-8	Ἀνδρῶν	ἀνήρ	PROPN	Ne	Case=Nom|Gender=Masc|Number=Sing	9	nmod	_	_
+8	Ἀνδρῶν	ἀνήρ	NOUN	Nb	Case=Gen|Gender=Masc|Number=Plur	9	nmod	_	_
 9	συγγράμματι	σύγγραμμα	NOUN	Nb	Case=Dat|Gender=Neut|Number=Sing	3	obl	_	SpaceAfter=No
 10	·	·	PUNCT	Z	_	3	punct	_	_
 
@@ -20565,7 +20565,7 @@
 9	καὶ	καί	ADV	D-	_	1	advmod	_	_
 10	Σκιώνη	Σκιώνη	PROPN	Ne	Case=Nom|Gender=Fem|Number=Sing	1	conj	_	_
 11	καὶ	καί	ADV	D-	_	1	advmod	_	_
-12	Ἱππάφεσις	ἱππάφεσις	PROPN	Ne	Case=Nom|Gender=Fem|Number=Sing	1	conj	_	_
+12	Ἱππάφεσις	Ἱππάφεσις	PROPN	Ne	Case=Nom|Gender=Fem|Number=Sing	1	conj	_	_
 13	καὶ	καί	ADV	D-	_	1	advmod	_	_
 14	Θεόκλεια	Θεόκλεια	PROPN	Ne	Case=Nom|Gender=Fem|Number=Sing	1	conj	_	_
 15	καὶ	καί	ADV	D-	_	1	advmod	_	_
@@ -22713,7 +22713,7 @@
 3	αὐτὸν	αὐτός	PRON	P-	Case=Acc|Gender=Masc|Number=Sing	2	obj	_	_
 4	ἐκείνων	ἐκεῖνος	PRON	P-	Case=Gen|Gender=Masc|Number=Plur	2	nsubj	_	_
 5	ἡ	ὁ	DET	P-	Case=Nom|Gender=Fem|Number=Sing	6	det	_	_
-6	Εἰρήνη	εἰρήνη	PROPN	Ne	Case=Nom|Gender=Fem|Number=Sing	14	nsubj	_	_
+6	Εἰρήνη	Εἰρήνη	PROPN	Ne	Case=Nom|Gender=Fem|Number=Sing	14	nsubj	_	_
 7	ἐχομένη	ἔχω	VERB	V-	Case=Nom|Gender=Fem|Number=Sing|Tense=Pres|VerbForm=Part|Voice=Mid	14	advcl	_	_
 8	τῶν	ὁ	DET	P-	Case=Gen|Gender=Neut|Number=Plur	9	det	_	_
 9	ῥόπτρων	ῥόπτρον	NOUN	Nb	Case=Gen|Gender=Neut|Number=Plur	7	obj	_	_
@@ -23888,7 +23888,7 @@
 19	φησι	φημί	VERB	V-	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	15	advcl	_	_
 20	Νυμφόδωρος	Νυμφόδωρος	PROPN	Ne	Case=Nom|Gender=Masc|Number=Sing	19	nsubj	_	_
 21	ἐν	ἐν	ADP	R-	_	22	case	_	_
-22	Περίπλῳ	περίπλοος	ADJ	A-	Case=Dat|Gender=Masc|Number=Sing	19	obl	_	_
+22	Περίπλῳ	περίπλοος	NOUN	Nb	Case=Dat|Gender=Masc|Number=Sing	19	obl	_	_
 23	Ἀσίας	Ἀσία	PROPN	Ne	Case=Gen|Gender=Fem|Number=Sing	22	nmod	_	SpaceAfter=No
 24	.	.	PUNCT	Z	_	15	punct	_	_
 

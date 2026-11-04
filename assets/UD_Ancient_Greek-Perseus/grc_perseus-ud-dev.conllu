@@ -8402,7 +8402,7 @@
 14	διὰ	διά	ADP	R-	_	15	case	_	_
 15	Γερανείας	Γερανεία	PROPN	Ne	Case=Gen|Gender=Fem|Number=Sing	11	obl	_	_
 16	καὶ	καί	CCONJ	C-	_	15	cc	_	_
-17	Ἰσθμοῦ	ἰσθμός	PROPN	Ne	Case=Gen|Gender=Masc|Number=Sing	15	conj	_	SpaceAfter=No
+17	Ἰσθμοῦ	Ἰσθμός	PROPN	Ne	Case=Gen|Gender=Masc|Number=Sing	15	conj	_	SpaceAfter=No
 18	·	·	PUNCT	Z	_	11	punct	_	_
 
 # sent_id = tlg0003.tlg001.perseus-grc1.1.tb.xml@676
@@ -12620,7 +12620,7 @@
 13	Ἰνδικὴν	Ἰνδικός	PROPN	Ne	Case=Acc|Gender=Fem|Number=Sing	14	obl	_	_
 14	πλανηθεὶς	πλανάω	VERB	V-	Case=Nom|Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part|Voice=Pass	17	advcl	_	_
 15	τοῖς	ὁ	DET	P-	Case=Dat|Gender=Masc|Number=Plur	16	det	_	_
-16	Γυμνοσοφισταῖς	γυμνοσοφισταί	PROPN	Ne	Case=Dat|Gender=Masc|Number=Plur	17	obj	_	_
+16	Γυμνοσοφισταῖς	Γυμνοσοφισταί	PROPN	Ne	Case=Dat|Gender=Masc|Number=Plur	17	obj	_	_
 17	ὡμίλησεν	ὁμιλέω	VERB	V-	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	7	conj	_	SpaceAfter=No
 18	,	,	PUNCT	Z	_	7	punct	_	_
 19	οὐδένα	οὐδείς	PRON	P-	Case=Acc|Gender=Masc|Number=Sing	25	nsubj	_	_
@@ -21556,7 +21556,7 @@
 2	δʼ	δέ	ADV	D-	_	1	advmod	_	_
 3	αὐτῷ	αὐτός	PRON	P-	Case=Dat|Gender=Masc|Number=Sing	1	obj	_	_
 4	καὶ	καί	ADV	D-	_	5	advmod	_	_
-5	Θρασύβουλος	θρασύβουλος	PROPN	Ne	Case=Nom|Gender=Masc|Number=Sing	1	nsubj	_	_
+5	Θρασύβουλος	Θρασύβουλος	PROPN	Ne	Case=Nom|Gender=Masc|Number=Sing	1	nsubj	_	_
 6	ὁ	ὁ	DET	P-	Case=Nom|Gender=Masc|Number=Sing	5	det	_	_
 7	Στειριεὺς	Στειριεύς	PROPN	Ne	Case=Nom|Gender=Masc|Number=Sing	5	nmod	_	_
 8	ἅμα	ἅμα	ADV	D-	_	9	advmod	_	_
@@ -22999,7 +22999,7 @@
 6	ἐν	ἐν	ADP	R-	_	8	case	_	_
 7	τῷ	ὁ	DET	P-	Case=Dat|Gender=Neut|Number=Sing	8	det	_	_
 8	στρατοπέδῳ	στρατόπεδον	NOUN	Nb	Case=Dat|Gender=Neut|Number=Sing	1	obl	_	_
-9	Θρασύβουλος	θρασύβουλος	PROPN	Ne	Case=Nom|Gender=Masc|Number=Sing	14	nsubj	_	_
+9	Θρασύβουλος	Θρασύβουλος	PROPN	Ne	Case=Nom|Gender=Masc|Number=Sing	14	nsubj	_	_
 10	ὁ	ὁ	DET	P-	Case=Nom|Gender=Masc|Number=Sing	9	det	_	_
 11	Θράσωνος	Θράσων	PROPN	Ne	Case=Gen|Gender=Masc|Number=Sing	9	nmod	_	_
 12	ἐχθρὸς	ἐχθρός	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	14	advcl	_	_

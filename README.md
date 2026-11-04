@@ -3,7 +3,31 @@
 
 greCy is a set of spaCy ancient Greek models and its installer. The models were trained using the [Perseus](https://universaldependencies.org/treebanks/grc_perseus/index.html) and  [Proiel UD](https://universaldependencies.org/treebanks/grc_proiel/index.html) corpora. 
 
-In general, models trained with the Proiel corpus perform better in POS Tagging and Dependency Parsing, while Perseus models are better at sentence segmentation using punctuation, and Morphological Analysis. Lemmatization is similar across models because they share the same look-up table. 
+The PROIEL treebank distributed with greCy includes the punctuation of the original PROIEL release (20180408), which the official UD conversion leaves out, and its sentences follow the orthographic convention of the edition: PROIEL annotation units that end in a comma are joined with the following one (the later part attached as `parataxis`), so that, as in Perseus, a sentence ends with . · ; or :. PROIEL scores are therefore not directly comparable with the official UD figures.
+
+In general, models trained with the Proiel corpus perform better in POS Tagging and Dependency Parsing, while Perseus models are better at sentence segmentation using punctuation, and Morphological Analysis. Lemmatization is similar across the large and transformer models because they share the same lemmatizer (see below).
+
+### Lemmatization
+
+The main lemmatizer is Morpheus, the Perseus morphological analyser, through [pymorpheus](https://github.com/jmyerston/pymorpheus), a pure-Python port that pip installs automatically with the models. For each word the `morpheus_lemmatizer` component picks the Morpheus analysis that best fits the part of speech and morphology predicted by the model, and maps its lemma to the conventions of the treebank the model was trained on (for example εἶπον → λέγω). The greCy look-up table breaks ties and is used for words Morpheus does not know; proper nouns are then checked by the `propn_lemmatizer` component. The pipeline is:
+
+```
+... morphologizer, tagger, parser, lemmatizer (look-up), morpheus_lemmatizer, propn_lemmatizer ...
+```
+
+Lemma accuracy on the UD dev/test sets with gold POS and morphology, compared with the previous look-up set-up:
+
+| | look-up + propn | Morpheus + propn |
+|---|---:|---:|
+| PROIEL dev | 97.67 | 98.09 |
+| PROIEL test | 98.01 | 98.23 |
+| Perseus dev | 96.94 | 97.36 |
+| Perseus test | 96.32 | 96.47 |
+
+The small (`_sm`) models do not use Morpheus: they lemmatize with the look-up table and the `propn_lemmatizer` only, and do not need pymorpheus.
+
+pymorpheus and the Morpheus stem library it bundles are licensed under MPL-2.0.
+
 
 ### Installation
 
