@@ -1,17 +1,18 @@
-"""Write the meta.json override that makes the large/transformer model wheels require pymorpheus.
+"""Write a meta.json override with extra package requirements for `spacy package --meta-path`.
 
-    python scripts/write_meta_requirements.py VERSION WHEEL OUT
+    python scripts/write_meta_requirements.py OUT REQUIREMENT [REQUIREMENT ...]
 
-pymorpheus is not on PyPI: its wheel is uploaded to the greCy GitHub release v{VERSION} together
-with the models (see `pack-pymorpheus` and `publish` in project.yml), and the models require it by
-direct URL, so `pip install grc_proiel_trf-….whl` installs it automatically.
+spaCy adds spacy and spacy-transformers itself. Used by `pack-pymorpheus` in project.yml for:
+  * pymorpheus, which is not on PyPI: its wheel is uploaded to the greCy GitHub release together
+    with the models and required by direct URL ("pymorpheus @ https://…/pymorpheus-….whl");
+  * transformers, bounded for the transformer models: their weights are saved by transformers
+    >= 4.31 (no `embeddings.position_ids` buffer) and do not load with older versions.
 """
 import json
 import sys
 from pathlib import Path
 
-version, wheel, out = sys.argv[1:4]
-url = f"https://github.com/jmyerston/greCy/releases/download/v{version}/{wheel}"
-Path(out).parent.mkdir(parents=True, exist_ok=True)
-Path(out).write_text(json.dumps({"requirements": [f"pymorpheus @ {url}"]}, indent=2) + "\n", encoding="utf-8")
-print(f"wrote {out}: pymorpheus @ {url}")
+out, reqs = Path(sys.argv[1]), sys.argv[2:]
+out.parent.mkdir(parents=True, exist_ok=True)
+out.write_text(json.dumps({"requirements": reqs}, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+print(f"wrote {out}: " + "; ".join(reqs))
