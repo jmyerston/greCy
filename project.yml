@@ -90,6 +90,7 @@ commands:
     help: "Convert the data to spaCy's format"
     script:
       - "mkdir -p vectors/large"
+      - "mkdir -p corpus/parser/proiel/test corpus/parser/perseus/test"
       - "python -m spacy convert assets/${vars.treebank_proiel}/${vars.train_name_proiel}.conllu corpus/parser/proiel/train --converter conllu --n-sents 10 --merge-subtokens"
       - "python -m spacy convert assets/${vars.treebank_proiel}/${vars.dev_name_proiel}.conllu corpus/parser/proiel/dev --converter conllu --n-sents 10 --merge-subtokens"
       - "python -m spacy convert assets/${vars.treebank_proiel}/${vars.test_name_proiel}.conllu corpus/parser/proiel/test --converter conllu --n-sents 10 --merge-subtokens"
