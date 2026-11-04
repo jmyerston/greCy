@@ -25,7 +25,7 @@ vars:
   pack_name_perseus: "perseus"
   pack_name_ner: "ner"
 
-  package_version: 3.8.19a1
+  package_version: 3.8.18a1
   pymorpheus_dir: "../pymorpheus"
   pymorpheus_wheel: "pymorpheus-0.1.0.dev0-py3-none-any.whl"
   # transformer weights are saved without embeddings.position_ids (transformers >= 4.31)
