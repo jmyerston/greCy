@@ -18423,7 +18423,7 @@
 11	καὶ	καί	CCONJ	C-	_	15	cc	_	Ref=1.161.1
 12	τοῦτο	οὗτος	ADJ	Pd	Case=Acc|Gender=Neut|Number=Sing	15	obl	_	Ref=1.161.1
 13	μὲν	μέν	ADV	Df	_	15	discourse	_	Ref=1.161.1
-14	Πριηνέας	Πριηνέες	PROPN	Ne	Case=Acc|Gender=Fem|Number=Plur	15	obj	_	Ref=1.161.1
+14	Πριηνέας	Πριηνεύς	PROPN	Ne	Case=Acc|Gender=Fem|Number=Plur	15	obj	_	Ref=1.161.1
 15	ἐξηνδραποδίσατο	ἐξανδραποδίζω	VERB	V-	Aspect=Perf|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Mid	5	parataxis	_	Ref=1.161.1|SpaceAfter=No
 16	,	,	PUNCT	Z	_	15	punct	_	Ref=1.161.1
 17	τοῦτο	οὗτος	ADJ	Pd	Case=Acc|Gender=Neut|Number=Sing	22	obl	_	Ref=1.161.1
@@ -19521,7 +19521,7 @@
 13	γνώμην	γνώμη	NOUN	Nb	Case=Acc|Gender=Fem|Number=Sing	17	obj	_	Ref=1.170.1
 14	Βίαντα	Βίας	PROPN	Ne	Case=Acc|Gender=Masc|Number=Sing	17	nsubj	_	Ref=1.170.1
 15	ἄνδρα	ἀνήρ	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	14	appos	_	Ref=1.170.1
-16	Πριηνέα	Πριηνεῦς	NOUN	Nb	Case=Acc|Gender=Fem|Number=Sing	15	nmod	_	Ref=1.170.1
+16	Πριηνέα	Πριηνεύς	NOUN	Nb	Case=Acc|Gender=Fem|Number=Sing	15	nmod	_	Ref=1.170.1
 17	ἀποδέξασθαι	ἀποδέχομαι	VERB	V-	Aspect=Perf|Tense=Past|VerbForm=Inf|Voice=Mid	12	ccomp	_	Ref=1.170.1
 18	Ἴωσι	Ἴων	NOUN	Nb	Case=Dat|Gender=Masc|Number=Plur	17	iobj	_	Ref=1.170.1
 19	χρησιμωτάτην	χρήσιμος	ADJ	A-	Case=Acc|Degree=Sup|Gender=Fem|Number=Sing	13	amod	_	Ref=1.170.1|SpaceAfter=No
@@ -19596,7 +19596,7 @@
 2	μὲν	μέν	ADV	Df	_	6	discourse	_	Ref=1.170.3
 3	Βίαντος	Βίας	PROPN	Ne	Case=Gen|Gender=Masc|Number=Sing	6	nmod	_	Ref=1.170.3
 4	τοῦ	ὁ	DET	S-	Case=Gen|Definite=Def|Gender=Masc,Neut|Number=Sing|PronType=Dem	5	det	_	Ref=1.170.3
-5	Πριηνέος	Πριηνεῦς	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	3	nmod	_	Ref=1.170.3
+5	Πριηνέος	Πριηνεύς	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	3	nmod	_	Ref=1.170.3
 6	γνώμη	γνώμη	NOUN	Nb	Case=Nom|Gender=Fem|Number=Sing	0	root	_	Ref=1.170.3
 7	ἐπὶ	ἐπί	ADP	R-	_	8	case	_	Ref=1.170.3
 8	διεφθαρμένοισι	διαφθείρω	VERB	V-	Aspect=Perf|Case=Dat|Gender=Masc|Number=Plur|Tense=Past|VerbForm=Part|Voice=Pass	10	advcl	_	Ref=1.170.3

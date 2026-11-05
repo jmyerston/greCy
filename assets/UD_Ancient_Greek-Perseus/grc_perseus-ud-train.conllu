@@ -16455,7 +16455,7 @@
 20	τε	τε	ADV	D-	_	17	cc	_	_
 21	λείας	λεῖος	NOUN	Nb	Case=Gen|Gender=Fem|Number=Sing	24	nmod	_	_
 22	ἄδαστα	ἄδαστος	ADJ	A-	Case=Acc|Gender=Neut|Number=Plur	24	nmod	_	_
-23	βουκόλων	βούκολος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Plur	24	nmod	_	_
+23	βουκόλων	βουκόλος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Plur	24	nmod	_	_
 24	φρουρήματα	φρούρημα	NOUN	Nb	Case=Acc|Gender=Neut|Number=Plur	17	conj	_	SpaceAfter=No
 25	·	·	PUNCT	Z	_	3	punct	_	_
 
@@ -64322,7 +64322,7 @@
 22	κύνα	κύων	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	23	obj	_	_
 23	κτείνας	κτείνω	VERB	V-	Case=Nom|Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part|Voice=Act	28	advcl	_	_
 24	ἢ	ἤ	CCONJ	C-	_	22	cc	_	_
-25	βουκόλον	βούκολος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	22	conj	_	_
+25	βουκόλον	βουκόλος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	22	conj	_	_
 26	ἀμφὶ	ἀμφί	ADP	R-	_	27	case	_	_
 27	βόεσσι	βοῦς	NOUN	Nb	Case=Dat|Gender=Masc|Number=Plur	23	obl	_	_
 28	φεύγει	φεύγω	VERB	V-	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	15	acl	_	_
@@ -105454,7 +105454,7 @@
 11	τʼ	τε	ADV	D-	_	12	advmod	_	_
 12	ἔρριψε	ῥίπτω	VERB	V-	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	26	advcl	_	_
 13	καλαύροπα	καλαῦροψ	NOUN	Nb	Case=Acc|Gender=Fem|Number=Sing	12	obj	_	_
-14	βουκόλος	βούκολος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	15	nmod	_	_
+14	βουκόλος	βουκόλος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	15	nmod	_	_
 15	ἀνήρ	ἀνήρ	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	12	nsubj	_	SpaceAfter=No
 16	,	,	PUNCT	Z	_	17	punct	_	_
 17	ἣ	ὁ	PRON	P-	Case=Nom|Gender=Fem|Number=Sing	21	nsubj	_	_
@@ -138751,7 +138751,7 @@
 7	ἕνδεκα	ἕνδεκα	NUM	M-	_	5	nummod	_	_
 8	Σαδυάττης	Σαδυάττης	PROPN	Ne	Case=Nom|Gender=Masc|Number=Sing	13	nsubj	_	_
 9	ὁ	ὁ	DET	P-	Case=Nom|Gender=Masc|Number=Sing	8	det	_	_
-10	Ἄρδυος	Ἄρδυος	PROPN	Ne	Case=Gen|Gender=Masc|Number=Sing	8	nmod	_	_
+10	Ἄρδυος	Ἄρδυς	PROPN	Ne	Case=Gen|Gender=Masc|Number=Sing	8	nmod	_	_
 11	ἔτι	ἔτι	ADV	D-	_	13	advmod	_	_
 12	Λυδῶν	Λυδός	PROPN	Ne	Case=Gen|Gender=Masc|Number=Plur	13	obj	_	_
 13	ἦρχε	ἄρχω	VERB	V-	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	SpaceAfter=No
@@ -148850,7 +148850,7 @@
 1	ἐπεὶ	ἐπεί	CCONJ	C-	_	8	mark	_	_
 2	ὦν	οὖν	ADV	D-	_	10	advmod	_	_
 3	ὁ	ὁ	DET	P-	Case=Nom|Gender=Masc|Number=Sing	4	det	_	_
-4	βουκόλος	βούκολος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	8	nsubj	_	_
+4	βουκόλος	βουκόλος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	8	nsubj	_	_
 5	σπουδῇ	σπουδή	NOUN	Nb	Case=Dat|Gender=Fem|Number=Sing	8	obl	_	_
 6	πολλῇ	πολύς	ADJ	A-	Case=Dat|Gender=Fem|Number=Sing	5	nmod	_	_
 7	καλεόμενος	καλέω	VERB	V-	Case=Nom|Gender=Masc|Number=Sing|Tense=Pres|VerbForm=Part|Voice=Mid	8	advcl	_	_
@@ -148922,7 +148922,7 @@
 1	ταῦτα	οὗτος	PRON	P-	Case=Nom|Gender=Neut|Number=Plur	2	obj	_	_
 2	ἀκούσας	ἀκούω	VERB	V-	Case=Nom|Gender=Masc|Number=Sing|Tense=Pres|VerbForm=Part|Voice=Act	9	advcl	_	_
 3	ὁ	ὁ	DET	P-	Case=Nom|Gender=Masc|Number=Sing	4	det	_	_
-4	βουκόλος	βούκολος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	9	nsubj	_	_
+4	βουκόλος	βουκόλος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	9	nsubj	_	_
 5	καὶ	καί	ADV	D-	_	6	advmod	_	_
 6	ἀναλαβὼν	ἀναλαμβάνω	VERB	V-	Case=Nom|Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part|Voice=Act	9	advcl	_	_
 7	τὸ	ὁ	DET	P-	Case=Acc|Gender=Neut|Number=Sing	8	det	_	_
@@ -148961,7 +148961,7 @@
 18	τίκτει	τίκτω	VERB	V-	Mood=Ind|Number=Sing|Person=3|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	_
 19	οἰχομένου	οἴχομαι	VERB	V-	Case=Gen|Gender=Masc|Number=Sing|Tense=Pres|VerbForm=Part|Voice=Mid	18	advcl	_	_
 20	τοῦ	ὁ	DET	P-	Case=Gen|Gender=Masc|Number=Sing	21	det	_	_
-21	βουκόλου	βούκολος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	19	nsubj	_	_
+21	βουκόλου	βουκόλος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	19	nsubj	_	_
 22	ἐς	εἰς	ADP	R-	_	23	case	_	_
 23	πόλιν	πόλις	NOUN	Nb	Case=Acc|Gender=Fem|Number=Sing	19	obl	_	SpaceAfter=No
 24	.	.	PUNCT	Z	_	18	punct	_	_
@@ -149182,7 +149182,7 @@
 3	ταῦτα	οὗτος	PRON	P-	Case=Acc|Gender=Neut|Number=Plur	4	obj	_	_
 4	ἔλεγε	λέγω	VERB	V-	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	_
 5	ὁ	ὁ	DET	P-	Case=Nom|Gender=Masc|Number=Sing	6	det	_	_
-6	βουκόλος	βούκολος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	4	nsubj	_	_
+6	βουκόλος	βουκόλος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	4	nsubj	_	_
 7	καὶ	καί	CCONJ	C-	_	4	cc	_	_
 8	ἐκκαλύψας	ἐκκαλύπτω	VERB	V-	Case=Nom|Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part|Voice=Act	9	advcl	_	_
 9	ἀπεδείκνυε	ἀποδείκνυμι	VERB	V-	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	4	conj	_	SpaceAfter=No
@@ -149320,7 +149320,7 @@
 2	τε	τε	ADV	D-	_	3	advmod	_	_
 3	ἔδοξε	δοκέω	VERB	V-	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	0	root	_	_
 4	τῷ	ὁ	DET	P-	Case=Dat|Gender=Masc|Number=Sing	5	det	_	_
-5	βουκόλῳ	βούκολος	NOUN	Nb	Case=Dat|Gender=Masc|Number=Sing	3	iobj	_	_
+5	βουκόλῳ	βουκόλος	NOUN	Nb	Case=Dat|Gender=Masc|Number=Sing	3	iobj	_	_
 6	πρὸς	πρός	ADP	R-	_	8	case	_	_
 7	τὰ	ὁ	DET	P-	Case=Acc|Gender=Neut|Number=Plur	8	det	_	_
 8	παρεόντα	πάρειμι	VERB	V-	Case=Acc|Gender=Neut|Number=Plur|Tense=Pres|VerbForm=Part|Voice=Act	3	obl	_	_
@@ -149402,7 +149402,7 @@
 11	ἐς	εἰς	ADP	R-	_	12	case	_	_
 12	πόλιν	πόλις	NOUN	Nb	Case=Acc|Gender=Fem|Number=Sing	10	obl	_	_
 13	ὁ	ὁ	DET	P-	Case=Nom|Gender=Masc|Number=Sing	14	det	_	_
-14	βουκόλος	βούκολος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	10	nsubj	_	SpaceAfter=No
+14	βουκόλος	βουκόλος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	10	nsubj	_	SpaceAfter=No
 15	,	,	PUNCT	Z	_	21	punct	_	_
 16	τῶν	ὁ	DET	P-	Case=Gen|Gender=Masc|Number=Plur	18	det	_	_
 17	τινα	τίς	PRON	P-	Case=Acc|Gender=Masc|Number=Sing	21	obj	_	_
@@ -149475,7 +149475,7 @@
 27	σοῦ	σύ	ADJ	A-	Case=Gen|Gender=Masc|Number=Sing	28	nmod	_	_
 28	δούλου	δοῦλος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	34	obl	_	SpaceAfter=No
 29	,	,	PUNCT	Z	_	30	punct	_	_
-30	βουκόλου	βούκολος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	32	nmod	_	_
+30	βουκόλου	βουκόλος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	32	nmod	_	_
 31	δὲ	δέ	CCONJ	C-	_	28	cc	_	_
 32	παιδὸς	παῖς	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	28	conj	_	_
 33	ὧδε	ὧδε	ADV	D-	_	34	advmod	_	_
@@ -149508,7 +149508,7 @@
 16	μετεπέμπετο	μεταπέμπω	VERB	V-	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Mid	0	root	_	_
 17	τόν	ὁ	DET	P-	Case=Acc|Gender=Masc|Number=Sing	19	det	_	_
 18	τε	τε	ADV	D-	_	19	advmod	_	_
-19	βουκόλον	βούκολος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	16	obj	_	_
+19	βουκόλον	βουκόλος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	16	obj	_	_
 20	καὶ	καί	CCONJ	C-	_	19	cc	_	_
 21	τὸν	ὁ	DET	P-	Case=Acc|Gender=Masc|Number=Sing	22	det	_	_
 22	παῖδα	παῖς	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	19	conj	_	SpaceAfter=No
@@ -149646,7 +149646,7 @@
 12	,	,	PUNCT	Z	_	18	punct	_	_
 13	ἵνα	ἵνα	SCONJ	G-	_	18	mark	_	_
 14	τὸν	ὁ	DET	P-	Case=Acc|Gender=Masc|Number=Sing	15	det	_	_
-15	βουκόλον	βούκολος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	17	obj	_	_
+15	βουκόλον	βουκόλος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	17	obj	_	_
 16	μοῦνον	μόνος	ADJ	A-	Case=Acc|Gender=Masc|Number=Sing	15	nmod	_	_
 17	λαβὼν	λαμβάνω	VERB	V-	Case=Nom|Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part|Voice=Act	18	advcl	_	_
 18	βασανίσῃ	βασανίζω	VERB	V-	Mood=Sub|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	9	advcl	_	SpaceAfter=No
@@ -149690,7 +149690,7 @@
 19	δὲ	δέ	CCONJ	C-	_	5	cc	_	_
 20	ὑπελέλειπτο	ὑπολείπω	VERB	V-	Mood=Ind|Number=Sing|Person=3|Tense=Pqp|VerbForm=Fin|Voice=Mid	28	advcl	_	_
 21	ὁ	ὁ	DET	P-	Case=Nom|Gender=Masc|Number=Sing	22	det	_	_
-22	βουκόλος	βούκολος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	20	nsubj	_	_
+22	βουκόλος	βουκόλος	NOUN	Nb	Case=Nom|Gender=Masc|Number=Sing	20	nsubj	_	_
 23	μοῦνος	μόνος	ADJ	A-	Case=Nom|Gender=Masc|Number=Sing	22	xcomp	_	_
 24	μουνόθεν	μονόθεν	ADV	D-	_	20	advmod	_	SpaceAfter=No
 25	,	,	PUNCT	Z	_	20	punct	_	_
@@ -149786,7 +149786,7 @@
 2	δὲ	δέ	ADV	D-	_	13	advmod	_	_
 3	τοῦ	ὁ	DET	P-	Case=Gen|Gender=Masc|Number=Sing	5	det	_	_
 4	μὲν	μέν	ADV	D-	_	13	advmod	_	_
-5	βουκόλου	βούκολος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	8	nsubj	_	_
+5	βουκόλου	βουκόλος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	8	nsubj	_	_
 6	τὴν	ὁ	DET	P-	Case=Acc|Gender=Fem|Number=Sing	7	det	_	_
 7	ἀληθείην	ἀλήθεια	NOUN	Nb	Case=Acc|Gender=Fem|Number=Sing	8	obj	_	_
 8	ἐκφήναντος	ἐκφαίνω	VERB	V-	Case=Gen|Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part|Voice=Act	13	advcl	_	_
@@ -149847,7 +149847,7 @@
 4	ὡς	ὡς	SCONJ	G-	_	5	mark	_	_
 5	εἶδε	ὁράω	VERB	V-	Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	12	advcl	_	_
 6	τὸν	ὁ	DET	P-	Case=Acc|Gender=Masc|Number=Sing	7	det	_	_
-7	βουκόλον	βούκολος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	8	nsubj	_	_
+7	βουκόλον	βουκόλος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	8	nsubj	_	_
 8	ἔνδον	ἔνδον	ADV	D-	_	5	obj	_	_
 9	ἐόντα	εἰμί	AUX	V-	Case=Acc|Gender=Masc|Number=Sing|Tense=Pres|VerbForm=Part|Voice=Act	8	cop	_	SpaceAfter=No
 10	,	,	PUNCT	Z	_	5	punct	_	_
@@ -149914,7 +149914,7 @@
 # text = καλέσας τὸν βουκόλον τόνδε παραδίδωμι τὸ παιδίον, φὰς σέ τε εἶναι τὸν κελεύοντα ἀποκτεῖναι αὐτό.
 1	καλέσας	καλέω	VERB	V-	Case=Nom|Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part|Voice=Act	5	advcl	_	_
 2	τὸν	ὁ	DET	P-	Case=Acc|Gender=Masc|Number=Sing	3	det	_	_
-3	βουκόλον	βούκολος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	1	obj	_	_
+3	βουκόλον	βουκόλος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	1	obj	_	_
 4	τόνδε	ὅδε	ADJ	A-	Case=Acc|Gender=Masc|Number=Sing	3	nmod	_	_
 5	παραδίδωμι	παραδίδωμι	VERB	V-	Mood=Ind|Number=Sing|Person=1|Tense=Pres|VerbForm=Fin|Voice=Act	0	root	_	_
 6	τὸ	ὁ	DET	P-	Case=Acc|Gender=Neut|Number=Sing	7	det	_	_
@@ -150038,7 +150038,7 @@
 18	αὐτὸς	αὐτός	PRON	P-	Case=Nom|Gender=Masc|Number=Sing	17	xcomp	_	_
 19	πρὸς	πρός	ADP	R-	_	21	case	_	_
 20	τοῦ	ὁ	DET	P-	Case=Gen|Gender=Masc|Number=Sing	21	det	_	_
-21	βουκόλου	βούκολος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	17	obl	_	_
+21	βουκόλου	βουκόλος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	17	obl	_	_
 22	τὸ	ὁ	PRON	P-	Case=Acc|Gender=Neut|Number=Sing	17	obj	_	_
 23	πρῆγμα	πρᾶγμα	NOUN	Nb	Case=Acc|Gender=Neut|Number=Sing	26	obl	_	SpaceAfter=No
 24	,	,	PUNCT	Z	_	23	punct	_	_
@@ -150645,7 +150645,7 @@
 11	Μιτραδάτην	Μιτραδάτης	PROPN	Ne	Case=Acc|Gender=Masc|Number=Sing	14	nmod	_	_
 12	τε	τε	ADV	D-	_	14	advmod	_	_
 13	τὸν	ὁ	DET	P-	Case=Acc|Gender=Masc|Number=Sing	14	det	_	_
-14	βουκόλον	βούκολος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	8	obl	_	_
+14	βουκόλον	βουκόλος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	8	obl	_	_
 15	καὶ	καί	CCONJ	C-	_	14	cc	_	_
 16	τὴν	ὁ	DET	P-	Case=Acc|Gender=Fem|Number=Sing	17	det	_	_
 17	γυναῖκα	γυνή	NOUN	Nb	Case=Acc|Gender=Fem|Number=Sing	14	conj	_	_
@@ -150706,7 +150706,7 @@
 4	ὑπὸ	ὑπό	ADP	R-	_	8	case	_	_
 5	τῆς	ὁ	DET	P-	Case=Gen|Gender=Fem|Number=Sing	8	det	_	_
 6	τοῦ	ὁ	DET	P-	Case=Gen|Gender=Masc|Number=Sing	7	det	_	_
-7	βουκόλου	βούκολος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	8	nmod	_	_
+7	βουκόλου	βουκόλος	NOUN	Nb	Case=Gen|Gender=Masc|Number=Sing	8	nmod	_	_
 8	γυναικός	γυνή	NOUN	Nb	Case=Gen|Gender=Fem|Number=Sing	1	obl	_	SpaceAfter=No
 9	,	,	PUNCT	Z	_	10	punct	_	_
 10	ἤιέ	εἶμι	VERB	V-	Aspect=Imp|Mood=Ind|Number=Sing|Person=3|Tense=Past|VerbForm=Fin|Voice=Act	3	conj	_	_
@@ -151009,7 +151009,7 @@
 27	ἀλλὰ	ἀλλά	CCONJ	C-	_	26	cc	_	_
 28	ἔδωκα	δίδωμι	VERB	V-	Mood=Ind|Number=Sing|Person=1|Tense=Past|VerbForm=Fin|Voice=Act	26	conj	_	_
 29	τῷ	ὁ	DET	P-	Case=Dat|Gender=Masc|Number=Sing	30	det	_	_
-30	βουκόλῳ	βούκολος	NOUN	Nb	Case=Dat|Gender=Masc|Number=Sing	28	obj	_	SpaceAfter=No
+30	βουκόλῳ	βουκόλος	NOUN	Nb	Case=Dat|Gender=Masc|Number=Sing	28	obj	_	SpaceAfter=No
 31	.	.	PUNCT	Z	_	5	punct	_	_
 
 # sent_id = tlg0016.tlg001.perseus-grc1.1.tb.xml@913
@@ -155035,7 +155035,7 @@
 13	γνώμην	γνώμη	NOUN	Nb	Case=Acc|Gender=Fem|Number=Sing	17	obj	_	_
 14	Βίαντα	Βίας	PROPN	Ne	Case=Acc|Gender=Masc|Number=Sing	17	nsubj	_	_
 15	ἄνδρα	ἀνήρ	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	14	nmod	_	_
-16	Πριηνέα	Πριηνεῦς	PROPN	Ne	Case=Acc|Gender=Masc|Number=Sing	15	nmod	_	_
+16	Πριηνέα	Πριηνεύς	PROPN	Ne	Case=Acc|Gender=Masc|Number=Sing	15	nmod	_	_
 17	ἀποδέξασθαι	ἀποδέχομαι	VERB	V-	Tense=Past|VerbForm=Inf|Voice=Mid	12	ccomp	_	_
 18	Ἴωσι	Ἴων	NOUN	Nb	Case=Voc|Gender=Fem|Number=Sing	17	obj	_	_
 19	χρησιμωτάτην	χρήσιμος	ADJ	A-	Case=Acc|Degree=Sup|Gender=Fem|Number=Sing	13	nmod	_	SpaceAfter=No
@@ -161892,7 +161892,7 @@
 27	τε	τε	ADV	D-	_	26	advmod	_	_
 28	κτείνας	κτείνω	VERB	V-	Case=Nom|Gender=Masc|Number=Sing|Tense=Past|VerbForm=Part|Voice=Act	18	advcl	_	_
 29	καὶ	καί	CCONJ	C-	_	26	cc	_	_
-30	βουκόλον	βούκολος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	31	nmod	_	_
+30	βουκόλον	βουκόλος	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	31	nmod	_	_
 31	Εὐρυτίωνα	εὐρυτίων	NOUN	Nb	Case=Acc|Gender=Masc|Number=Sing	26	conj	_	_
 32	σταθμῷ	σταθμός	NOUN	Nb	Case=Dat|Gender=Masc|Number=Sing	28	obl	_	_
 33	ἐν	ἐν	ADP	R-	_	32	case	_	_
