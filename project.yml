@@ -24,6 +24,8 @@ vars:
   pack_name_proiel: "proiel"
   pack_name_perseus: "perseus"
   pack_name_ner: "ner"
+  # commit of https://github.com/jmyerston/NEReus that preprocess-ner downloads
+  nereus_ref: "7318b059931c05a7f265dc16f19fe329f37af3b9"
 
   package_version: 3.8.18a1
   # pymorpheus is not on PyPI: the large and transformer models require the wheel of its GitHub release
@@ -48,14 +50,6 @@ assets:
 
  - dest: 'assets/${vars.vectors_lg}'
    url: 'https://zenodo.org/record/5733373/files/grc_floret_cbow_nn2_xn10_b200k_dim300.floret'
-
- - dest: 'assets/nereus/nereus_train.iob'
-   url: 'https://raw.githubusercontent.com/jmyerston/NEReus/main/corpus/nereus_train.iob'
-   description: 'NEReus NER training data (https://github.com/jmyerston/NEReus)'
-
- - dest: 'assets/nereus/nereus_dev.iob'
-   url: 'https://raw.githubusercontent.com/jmyerston/NEReus/main/corpus/nereus_dev.iob'
-   description: 'NEReus NER development data (https://github.com/jmyerston/NEReus)'
 
 
 workflows:
@@ -117,16 +111,26 @@ commands:
       - "vectors/${vars.vectors_lg}"
 
   - name: preprocess-ner
-    help: "Convert the NEReus corpus to spaCy's format"
+    help: "Download the NEReus corpus from GitHub, convert it to spaCy's format and add it to the corpora of the small and large models"
     script:
-      - "python -m spacy convert assets/nereus/nereus_train.iob corpus/ner/train --converter iob"
-      - "python -m spacy convert assets/nereus/nereus_dev.iob corpus/ner/dev --converter iob"
-    deps:
-      - "assets/nereus/nereus_train.iob"
-      - "assets/nereus/nereus_dev.iob"
+      - "mkdir -p assets/nereus corpus/ner/train corpus/ner/dev corpus/parser/proiel/train corpus/parser/proiel/dev corpus/parser/perseus/train corpus/parser/perseus/dev"
+      - "curl -fsSL https://raw.githubusercontent.com/jmyerston/NEReus/${vars.nereus_ref}/corpus/nereus_train.ner -o assets/nereus/nereus_train.ner"
+      - "curl -fsSL https://raw.githubusercontent.com/jmyerston/NEReus/${vars.nereus_ref}/corpus/nereus_dev.ner -o assets/nereus/nereus_dev.ner"
+      - "python -m spacy convert assets/nereus/nereus_train.ner corpus/ner/train --converter ner"
+      - "python -m spacy convert assets/nereus/nereus_dev.ner corpus/ner/dev --converter ner"
+      - "cp corpus/ner/train/nereus_train.spacy corpus/parser/proiel/train/ner_train.spacy"
+      - "cp corpus/ner/dev/nereus_dev.spacy corpus/parser/proiel/dev/ner_dev.spacy"
+      - "cp corpus/ner/train/nereus_train.spacy corpus/parser/perseus/train/ner_train.spacy"
+      - "cp corpus/ner/dev/nereus_dev.spacy corpus/parser/perseus/dev/ner_dev.spacy"
     outputs:
+      - "assets/nereus/nereus_train.ner"
+      - "assets/nereus/nereus_dev.ner"
       - "corpus/ner/train/nereus_train.spacy"
       - "corpus/ner/dev/nereus_dev.spacy"
+      - "corpus/parser/proiel/train/ner_train.spacy"
+      - "corpus/parser/proiel/dev/ner_dev.spacy"
+      - "corpus/parser/perseus/train/ner_train.spacy"
+      - "corpus/parser/perseus/dev/ner_dev.spacy"
 
 ### Training NER pipelines
 

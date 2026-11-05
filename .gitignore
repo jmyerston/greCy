@@ -11,4 +11,9 @@ __pycache__/
 *.bak-lookup
 assets/*.floret
 corpus/lemmatizer/
+assets/nereus/
+corpus/ner/
+corpus/parser/*/train/ner_train.spacy
+corpus/parser/*/dev/ner_dev.spacy
 eval_lemmatizers/
+TODO.md
