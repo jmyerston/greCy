@@ -3,7 +3,9 @@ description: "This project trains seven spaCy models using the ancient Greek Uni
 email: "jmyerston@ucsd.edu"
 source: "https://universaldependencies.org/"
 vars:
-  license: "MIT"
+  # code is MIT (LICENSE); these are the licenses of the trained models, see README.md
+  license_models: "CC-BY-NC-SA-4.0"
+  license_ner: "CC-BY-SA-4.0"
   author: "Jacobo Myerston"
   config_sm: "small"
   config_lg: "large"
@@ -334,7 +336,7 @@ commands:
     help: "Package training/small/proiel/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_proiel}_sm-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/small-proiel.json --treebank PROIEL --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/small-proiel.json"
+      - "python scripts/write_package_meta.py packages/meta/small-proiel.json --treebank PROIEL --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license_models} --url https://github.com/jmyerston/greCy --metrics metrics/small-proiel.json"
       - "python -m spacy package training/small/proiel/model-best packages --name ${vars.pack_name_proiel}_sm --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/small-proiel.json"
     deps:
       - "training/small/proiel/model-best"
@@ -346,7 +348,7 @@ commands:
     help: "Package training/small/perseus/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_perseus}_sm-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/small-perseus.json --treebank Perseus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/small-perseus.json"
+      - "python scripts/write_package_meta.py packages/meta/small-perseus.json --treebank Perseus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license_models} --url https://github.com/jmyerston/greCy --metrics metrics/small-perseus.json"
       - "python -m spacy package training/small/perseus/model-best packages --name ${vars.pack_name_perseus}_sm --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/small-perseus.json"
     deps:
       - "training/small/perseus/model-best"
@@ -358,7 +360,7 @@ commands:
     help: "Package training/large/proiel/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_proiel}_lg-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/large-proiel.json --treebank PROIEL --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/large-proiel.json --req '${vars.pymorpheus_req}'"
+      - "python scripts/write_package_meta.py packages/meta/large-proiel.json --treebank PROIEL --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license_models} --url https://github.com/jmyerston/greCy --metrics metrics/large-proiel.json --req '${vars.pymorpheus_req}'"
       - "python -m spacy package training/large/proiel/model-best packages --name ${vars.pack_name_proiel}_lg --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/large-proiel.json"
     deps:
       - "training/large/proiel/model-best"
@@ -370,7 +372,7 @@ commands:
     help: "Package training/large/perseus/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_perseus}_lg-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/large-perseus.json --treebank Perseus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/large-perseus.json --req '${vars.pymorpheus_req}'"
+      - "python scripts/write_package_meta.py packages/meta/large-perseus.json --treebank Perseus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license_models} --url https://github.com/jmyerston/greCy --metrics metrics/large-perseus.json --req '${vars.pymorpheus_req}'"
       - "python -m spacy package training/large/perseus/model-best packages --name ${vars.pack_name_perseus}_lg --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/large-perseus.json"
     deps:
       - "training/large/perseus/model-best"
@@ -382,7 +384,7 @@ commands:
     help: "Package training/transformer/proiel/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_proiel}_trf-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/transformer-proiel.json --treebank PROIEL --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/transformer-proiel.json --req '${vars.pymorpheus_req}' --req '${vars.transformers_req}'"
+      - "python scripts/write_package_meta.py packages/meta/transformer-proiel.json --treebank PROIEL --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license_models} --url https://github.com/jmyerston/greCy --metrics metrics/transformer-proiel.json --req '${vars.pymorpheus_req}' --req '${vars.transformers_req}'"
       - "python -m spacy package training/transformer/proiel/model-best packages --name ${vars.pack_name_proiel}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/transformer-proiel.json"
     deps:
       - "training/transformer/proiel/model-best"
@@ -394,7 +396,7 @@ commands:
     help: "Package training/transformer/perseus/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_perseus}_trf-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/transformer-perseus.json --treebank Perseus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/transformer-perseus.json --req '${vars.pymorpheus_req}' --req '${vars.transformers_req}'"
+      - "python scripts/write_package_meta.py packages/meta/transformer-perseus.json --treebank Perseus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license_models} --url https://github.com/jmyerston/greCy --metrics metrics/transformer-perseus.json --req '${vars.pymorpheus_req}' --req '${vars.transformers_req}'"
       - "python -m spacy package training/transformer/perseus/model-best packages --name ${vars.pack_name_perseus}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/transformer-perseus.json"
     deps:
       - "training/transformer/perseus/model-best"
@@ -406,7 +408,7 @@ commands:
     help: "Package training/transformer/ner/model-best as a wheel, with its test scores and requirements in the meta"
     script:
       - "rm -f packages/${vars.lang}_${vars.pack_name_ner}_trf-${vars.package_version}/README.md"
-      - "python scripts/write_package_meta.py packages/meta/transformer-ner.json --treebank NEReus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license} --url https://github.com/jmyerston/greCy --metrics metrics/transformer-ner.json --req '${vars.transformers_req}'"
+      - "python scripts/write_package_meta.py packages/meta/transformer-ner.json --treebank NEReus --author '${vars.author}' --email jmyerston@ucsd.edu --license ${vars.license_ner} --url https://github.com/jmyerston/greCy --metrics metrics/transformer-ner.json --req '${vars.transformers_req}'"
       - "python -m spacy package training/transformer/ner/model-best packages --name ${vars.pack_name_ner}_trf --version ${vars.package_version} --build wheel --force --code scripts/custom_functions.py --meta-path packages/meta/transformer-ner.json"
     deps:
       - "training/transformer/ner/model-best"

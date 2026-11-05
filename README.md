@@ -85,6 +85,23 @@ for token in doc:
 
 Unfortunaly, there is no consensus among the different internet projects that offer ancient Greek texts about how to represent the Ancient Greek apostrophe. Modern Greek simply uses the regular apostrophe, but ancient texts available in Perseus and Perseus under Philologic use various unicode characters for the apostrophe. Instead of the apostrophe, we find the Greek koronis, modifier letter apostrophe, and right single quotation mark. Provisionally, I have opted to use modifier letter apostrophe in the corpus  with which I trained the models. This means, that if you want the greCy models to properly handle the apostrophe you have to make sure that the Ancient Greek texts that you are processing use the modifier letter apostrophe **ʼ** (U+02BC ). Otherwise the models will fail to lemmatize and tag some words in your texts that ends with an 'apostrophe'.
 
+### License
+
+greCy's parts have different licenses, because its training data do:
+
+| Part | License |
+|---|---|
+| Code (`scripts/`, `configs/`, `project.yml`) | [MIT](LICENSE) |
+| `grc_proiel_*` models (from 3.8.18a1) | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
+| `grc_perseus_*` models (from 3.8.18a1) | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
+| `grc_ner_trf` model (from 3.8.18a1) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
+| [UD Ancient Greek PROIEL](assets/UD_Ancient_Greek-PROIEL/LICENSE.txt) treebank and its corpora | CC BY-NC-SA 3.0 |
+| [UD Ancient Greek Perseus](assets/UD_Ancient_Greek-Perseus/LICENSE.txt) treebank and its corpora | CC BY-NC-SA 2.5 |
+| [NEReus](https://github.com/jmyerston/NEReus) NER corpus | CC BY-SA 4.0 |
+| [Floret vectors](https://zenodo.org/record/5733373) used to train the large models | CC BY 4.0 |
+
+The PROIEL and Perseus models can't be used commercially, because their treebanks don't allow it. pymorpheus and Morpheus are a separate dependency under MPL-2.0.
+
 ### Building
 
 I offer here the project file, I use to train the models in case you want to customize your models for your specific needs. The six standard spaCy models (small, large, and transformer) are built and packaged using the following commands:
