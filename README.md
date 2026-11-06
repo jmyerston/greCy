@@ -65,16 +65,16 @@ To remove a model:
 python -m grecy uninstall MODEL
 ```
 
-You can also install a specific version of a model directly with pip, using its wheel (`.whl`) file from the Releases page. For example, to install grc_proiel_sm from the [v3.8 release](https://github.com/jmyerston/greCy/releases/tag/v3.8):
+You can also install a specific version of a model directly with pip, using its wheel (`.whl`) file from the Releases page. For example, to install grc_proiel_sm from the [v3.8.2 release](https://github.com/jmyerston/greCy/releases/tag/v3.8.2):
 
 ``` bash
-pip install https://github.com/jmyerston/greCy/releases/download/v3.8/grc_proiel_sm-3.8-py3-none-any.whl
+pip install https://github.com/jmyerston/greCy/releases/download/v3.8.2/grc_proiel_sm-3.8.2-py3-none-any.whl
 ```
 
 or, if you already downloaded the file:
 
 ``` bash
-pip install grc_proiel_sm-3.8-py3-none-any.whl
+pip install grc_proiel_sm-3.8.2-py3-none-any.whl
 ```
 
 The suffixes after the corpus name, _sm, _lg, and _trf, indicate the size of the model which directly depends on the word embedding used for training. The smallest models end in _sm (small) and are the less accurate ones: they are good for testing and building lightweight apps. The _lg and _trf are the large and transformers models which are more accurate. The _lg were trained using fasttext word vectors in the spaCy floret version, and the _trf models were trained using a special version of BERT, pertained by ourselves with the largest available Ancient Greek corpus, namely, the TLG.  The vectors for large models were also trained with the TLG corpus.
@@ -82,7 +82,7 @@ The suffixes after the corpus name, _sm, _lg, and _trf, indicate the size of the
 
 ### Loading
 
-As usual, you can load any of the four models with the following Python lines:
+As usual, you can load any of the seven models with the following Python lines:
 
 ```
 import spacy
