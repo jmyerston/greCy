@@ -29,7 +29,13 @@ ikelos and the Morpheus stem library it bundles are licensed under MPL-2.0.
 
 ### Installation
 
-The `grecy` installer package has been deprecated. To install a model, download the corresponding wheel (`.whl`) file from the [Releases page](https://github.com/jmyerston/greCy/releases) and install it directly with pip:
+The `grecy` installer, which had been deprecated, has been restored. It needs Python 3.10 or later. First install it from [PyPI](https://pypi.org/project/grecy/):
+
+``` bash
+pip install -U grecy
+```
+
+Then install any of the following models:
 
 * grc_perseus_sm
 * grc_proiel_sm
@@ -39,7 +45,21 @@ The `grecy` installer package has been deprecated. To install a model, download 
 * grc_proiel_trf
 * grc_ner_trf
 
-For example, to install grc_proiel_sm from the [v3.8 release](https://github.com/jmyerston/greCy/releases/tag/v3.8):
+by replacing MODEL with its name:
+
+``` bash
+python -m grecy install MODEL
+```
+
+The installer downloads the most recent version of the model from the [Releases page](https://github.com/jmyerston/greCy/releases) and installs it in the Python environment that runs the command. The transformer models (_trf) currently need Python 3.13 or earlier; the other models also work on Python 3.14.
+
+To remove a model:
+
+``` bash
+python -m grecy uninstall MODEL
+```
+
+You can also install a specific version of a model directly with pip, using its wheel (`.whl`) file from the Releases page. For example, to install grc_proiel_sm from the [v3.8 release](https://github.com/jmyerston/greCy/releases/tag/v3.8):
 
 ``` bash
 pip install https://github.com/jmyerston/greCy/releases/download/v3.8/grc_proiel_sm-3.8-py3-none-any.whl
