@@ -26,7 +26,7 @@ vars:
   pack_name_proiel: "proiel"
   pack_name_perseus: "perseus"
   pack_name_ner: "ner"
-  # commit of https://github.com/jmyerston/NEReus that preprocess-ner downloads
+  # commit of https://github.com/jmyerston/NEReus that preprocess downloads
   nereus_ref: "7318b059931c05a7f265dc16f19fe329f37af3b9"
 
   package_version: 3.8.18a1
@@ -57,7 +57,6 @@ assets:
 workflows:
   all:
     - preprocess
-    - preprocess-ner
     - train-transformer-ner
     - train-small-proiel
     - train-small-perseus
@@ -83,7 +82,7 @@ workflows:
 commands:
 
   - name: preprocess
-    help: "Convert the data to spaCy's format"
+    help: "Convert the treebanks to spaCy's format, initialize the vectors, and download the NEReus corpus, convert it and add it to the corpora of the small and large models"
     script:
       - "mkdir -p vectors/large"
       - "mkdir -p corpus/parser/proiel/test corpus/parser/perseus/test"
@@ -94,6 +93,15 @@ commands:
       - "python -m spacy convert assets/${vars.treebank_perseus}/${vars.dev_name_perseus}.conllu corpus/parser/perseus/dev --converter conllu --n-sents 10 --merge-subtokens"
       - "python -m spacy convert assets/${vars.treebank_perseus}/${vars.test_name_perseus}.conllu corpus/parser/perseus/test --converter conllu --n-sents 10 --merge-subtokens"
       - "python -m spacy init vectors ${vars.lang} assets/${vars.vectors_lg} ./vectors/large --mode floret"
+      - "mkdir -p assets/nereus corpus/ner/train corpus/ner/dev corpus/parser/proiel/train corpus/parser/proiel/dev corpus/parser/perseus/train corpus/parser/perseus/dev"
+      - "curl -fsSL https://raw.githubusercontent.com/jmyerston/NEReus/${vars.nereus_ref}/corpus/nereus_train.ner -o assets/nereus/nereus_train.ner"
+      - "curl -fsSL https://raw.githubusercontent.com/jmyerston/NEReus/${vars.nereus_ref}/corpus/nereus_dev.ner -o assets/nereus/nereus_dev.ner"
+      - "python -m spacy convert assets/nereus/nereus_train.ner corpus/ner/train --converter ner"
+      - "python -m spacy convert assets/nereus/nereus_dev.ner corpus/ner/dev --converter ner"
+      - "cp corpus/ner/train/nereus_train.spacy corpus/parser/proiel/train/ner_train.spacy"
+      - "cp corpus/ner/dev/nereus_dev.spacy corpus/parser/proiel/dev/ner_dev.spacy"
+      - "cp corpus/ner/train/nereus_train.spacy corpus/parser/perseus/train/ner_train.spacy"
+      - "cp corpus/ner/dev/nereus_dev.spacy corpus/parser/perseus/dev/ner_dev.spacy"
 
     deps:
       - "assets/${vars.treebank_proiel}/${vars.train_name_proiel}.conllu"
@@ -111,20 +119,6 @@ commands:
       - "corpus/parser/perseus/dev/grc_perseus-ud-dev.spacy"
       - "corpus/parser/perseus/test/grc_perseus-ud-test.spacy"
       - "vectors/${vars.vectors_lg}"
-
-  - name: preprocess-ner
-    help: "Download the NEReus corpus from GitHub, convert it to spaCy's format and add it to the corpora of the small and large models"
-    script:
-      - "mkdir -p assets/nereus corpus/ner/train corpus/ner/dev corpus/parser/proiel/train corpus/parser/proiel/dev corpus/parser/perseus/train corpus/parser/perseus/dev"
-      - "curl -fsSL https://raw.githubusercontent.com/jmyerston/NEReus/${vars.nereus_ref}/corpus/nereus_train.ner -o assets/nereus/nereus_train.ner"
-      - "curl -fsSL https://raw.githubusercontent.com/jmyerston/NEReus/${vars.nereus_ref}/corpus/nereus_dev.ner -o assets/nereus/nereus_dev.ner"
-      - "python -m spacy convert assets/nereus/nereus_train.ner corpus/ner/train --converter ner"
-      - "python -m spacy convert assets/nereus/nereus_dev.ner corpus/ner/dev --converter ner"
-      - "cp corpus/ner/train/nereus_train.spacy corpus/parser/proiel/train/ner_train.spacy"
-      - "cp corpus/ner/dev/nereus_dev.spacy corpus/parser/proiel/dev/ner_dev.spacy"
-      - "cp corpus/ner/train/nereus_train.spacy corpus/parser/perseus/train/ner_train.spacy"
-      - "cp corpus/ner/dev/nereus_dev.spacy corpus/parser/perseus/dev/ner_dev.spacy"
-    outputs:
       - "assets/nereus/nereus_train.ner"
       - "assets/nereus/nereus_dev.ner"
       - "corpus/ner/train/nereus_train.spacy"
