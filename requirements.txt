@@ -3,8 +3,7 @@ spacy>=3.8.5,<3.9.0
 spacy-transformers>=1.3.8,<1.4.0
 # transformer weights are saved without embeddings.position_ids: transformers >= 4.31
 transformers>=4.31.0,<4.50.0
-# pymorpheus is not on PyPI: wheel from https://github.com/jmyerston/pymorpheus/releases
-pymorpheus @ https://github.com/jmyerston/pymorpheus/releases/download/v0.1.0.dev0/pymorpheus-0.1.0.dev0-py3-none-any.whl
+ikelos>=0.1.0.dev1
 wandb
 spacy-huggingface-hub
 weasel

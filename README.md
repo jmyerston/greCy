@@ -9,7 +9,7 @@ In general, models trained with the Proiel corpus perform better in POS Tagging 
 
 ### Lemmatization
 
-The main lemmatizer is Morpheus, the Perseus morphological analyser, through [pymorpheus](https://github.com/jmyerston/pymorpheus), a pure-Python port; pip installs it automatically with the large and transformer models, from the wheel of its [GitHub release](https://github.com/jmyerston/pymorpheus/releases). For each word the `morpheus_lemmatizer` component picks the Morpheus analysis that best fits the part of speech and morphology predicted by the model, and maps its lemma to the conventions of the treebank the model was trained on (for example εἶπον → λέγω). The greCy look-up table breaks ties and is used for words Morpheus does not know; proper nouns are then checked by the `propn_lemmatizer` component. The pipeline is:
+The main lemmatizer is Morpheus, the Perseus morphological analyser, through [ikelos](https://github.com/jmyerston/ikelos), a pure-Python port; pip installs it automatically from [PyPI](https://pypi.org/project/ikelos/) with the large and transformer models. For each word the `morpheus_lemmatizer` component picks the Morpheus analysis that best fits the part of speech and morphology predicted by the model, and maps its lemma to the conventions of the treebank the model was trained on (for example εἶπον → λέγω). The greCy look-up table breaks ties and is used for words Morpheus does not know; proper nouns are then checked by the `propn_lemmatizer` component. The pipeline is:
 
 ```
 ... morphologizer, tagger, parser, lemmatizer (look-up), morpheus_lemmatizer, propn_lemmatizer ...
@@ -22,9 +22,9 @@ Lemma accuracy of `grc_proiel_trf`, the released version 3.8 (look-up lemmatizer
 | PROIEL dev | 13,652 | 97.90 | **97.97** |
 | PROIEL test | 13,314 | 98.14 | **98.22** |
 
-The small (`_sm`) models do not use Morpheus: they lemmatize with the look-up table and the `propn_lemmatizer` only, and do not need pymorpheus.
+The small (`_sm`) models do not use Morpheus: they lemmatize with the look-up table and the `propn_lemmatizer` only, and do not need ikelos.
 
-pymorpheus and the Morpheus stem library it bundles are licensed under MPL-2.0.
+ikelos and the Morpheus stem library it bundles are licensed under MPL-2.0.
 
 
 ### Installation
@@ -100,7 +100,7 @@ greCy's parts have different licenses, because its training data do:
 | [NEReus](https://github.com/jmyerston/NEReus) NER corpus | CC BY-SA 4.0 |
 | [Floret vectors](https://zenodo.org/record/5733373) used to train the large models | CC BY 4.0 |
 
-The PROIEL and Perseus models can't be used commercially, because their treebanks don't allow it. pymorpheus and Morpheus are a separate dependency under MPL-2.0.
+The PROIEL and Perseus models can't be used commercially, because their treebanks don't allow it. ikelos and Morpheus are a separate dependency under MPL-2.0.
 
 ### Building
 

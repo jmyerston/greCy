@@ -138,7 +138,7 @@ def make_propn_lemmatizer(nlp: Language, name: str):
 
 # ---------------------------------------------------------------------------------------------
 # Morpheus lemmatizer: the main lemmatizer. For each token it picks, among the analyses of the
-# pure-Python Morpheus port (pymorpheus), the one that best fits the predicted UPOS/morphology,
+# pure-Python Morpheus port (ikelos), the one that best fits the predicted UPOS/morphology,
 # and maps its lemma to the treebank's conventions. Tables are learned from the gold training
 # docs in initialize(); the lookup lemmatizer's lemma is the tiebreaker and the fallback.
 # ---------------------------------------------------------------------------------------------
@@ -191,7 +191,7 @@ class MorpheusLemmatizer:
 
     Runs after the morphologizer/tagger and the lookup lemmatizer (whose lemma is kept when
     Morpheus has no analysis, and used to break ties). The learned tables travel inside the
-    packaged model; Morpheus's own data ships in the pymorpheus wheel.
+    packaged model; Morpheus's own data ships in the ikelos wheel.
     """
 
     TABLES = ("compat", "marg", "conventions", "known", "form_prior", "lemma_freq")
@@ -217,9 +217,9 @@ class MorpheusLemmatizer:
     def analyses(self, text: str):
         if self._analyze is None:
             try:
-                from pymorpheus import analyze
+                from ikelos import analyze
             except ImportError as e:  # pragma: no cover
-                raise ImportError("grecy_morpheus_lemmatizer needs pymorpheus: pip install pymorpheus") from e
+                raise ImportError("grecy_morpheus_lemmatizer needs ikelos: pip install ikelos") from e
             self._analyze = analyze
         return self._analyze(text)
 

@@ -7,7 +7,7 @@
 * performance: the scores of `spacy evaluate` on the held-out set (metrics/MODEL.json), replacing the
   dev scores and losses that training stores; spaCy's generated README.md shows them as "Accuracy".
 * requirements: extra packages (spaCy adds spacy / spacy-transformers itself):
-    - pymorpheus, not on PyPI: the wheel of its GitHub release, required by direct URL;
+    - ikelos, from PyPI;
     - transformers, bounded for transformer models: their weights need transformers >= 4.31.
 * description, sources, notes, author, email, license, url: shown in the README and on the GitHub
   release (training leaves them empty).

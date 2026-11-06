@@ -29,7 +29,7 @@ for p, m in metas:
     cells = [f"{perf[k] * 100:.2f}" if isinstance(perf.get(k), (int, float)) else "–" for _, k in used]
     lines.append(f"| `{m['lang']}_{m['name']}` | " + " | ".join(cells) + " |")
 lines += ["", "Install a model with `pip install <wheel URL from the assets below>`; the large and transformer "
-          "models also install pymorpheus (https://github.com/jmyerston/pymorpheus/releases).", ""]
+          "models also install ikelos (https://pypi.org/project/ikelos/).", ""]
 for p, m in metas:
     lines += ["---", "", f"## {m['lang']}_{m['name']}", "", (p / "README.md").read_text(encoding="utf-8").strip(), ""]
 out.write_text("\n".join(lines) + "\n", encoding="utf-8")
