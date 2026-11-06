@@ -1,26 +1,32 @@
 # greCy
 ## Ancient Greek models for spaCy
 
-greCy is a set of spaCy ancient Greek models and its installer. The models were trained using the [Perseus](https://universaldependencies.org/treebanks/grc_perseus/index.html) and  [Proiel UD](https://universaldependencies.org/treebanks/grc_proiel/index.html) corpora. 
+greCy is a set of spaCy ancient Greek models and its installer. The models were trained using modified (corrected) versions of the [Perseus](https://universaldependencies.org/treebanks/grc_perseus/index.html) and  [Proiel UD](https://universaldependencies.org/treebanks/grc_proiel/index.html) corpora. 
 
-The PROIEL treebank distributed with greCy includes the punctuation of the original PROIEL release (20180408), which the official UD conversion leaves out, and its sentences follow the orthographic convention of the edition: PROIEL annotation units that end in a comma are joined with the following one (the later part attached as `parataxis`), so that, as in Perseus, a sentence ends with . · ; or :. PROIEL scores are therefore not directly comparable with the official UD figures.
+The PROIEL treebank distributed with greCy includes the punctuation of the original PROIEL release (2018), which the official UD conversion leaves out. Its sentences follow the orthographic convention of the edition. However some PROIEL annotations end in a comma; these are joined with the following one (the later part attached as `parataxis`), so that, as in Perseus, a sentence ends with . · or ;.  PROIEL scores are therefore not directly comparable with the official UD figures.
 
-In general, models trained with the Proiel corpus perform better in POS Tagging and Dependency Parsing, while Perseus models are better at sentence segmentation using punctuation, and Morphological Analysis. Lemmatization is similar across the large and transformer models because they share the same lemmatizer (see below).
+In general, models trained with the Proiel corpus perform better in POS Tagging and Dependency Parsing, while Perseus models are better at sentence segmentation using punctuation, and Morphological Analysis. Lemmatization is similar across the large and transformer models because they share the same  or similar lemmatizers (see below).
+
+### greCy or an LLM?
+
+For most annotation work, `grc_proiel_trf` is a better choice than a general-purpose LLM. In the comparison below, `grc_proiel_trf` was more accurate than Claude Opus 5.5 on part of speech, morphology and lemmas; it costs nothing per word and runs on your own machine, keeping your research projects private. Its main weakness is dependency parsing, where the LLM was better. If parsing accuracy is an important part of your project an LLM can be worth using.
+
+| Accuracy (%) | `grc_proiel_trf` 3.8.2 | Claude Opus 5.5 |
+| ------------ | ---------------------: | --------------: |
+| UPOS         |              **98.36** |           97.77 |
+| XPOS         |              **98.44** |           97.72 |
+| Morphology   |              **94.22** |           92.89 |
+| Lemma        |              **98.20** |           97.89 |
+| UAS          |                  87.89 |       **91.72** |
+| LAS          |                  84.29 |       **86.15** |
 
 ### Lemmatization
 
-The main lemmatizer is Morpheus, the Perseus morphological analyser, through [ikelos](https://github.com/jmyerston/ikelos), a pure-Python port; pip installs it automatically from [PyPI](https://pypi.org/project/ikelos/) with the large and transformer models. For each word the `morpheus_lemmatizer` component picks the Morpheus analysis that best fits the part of speech and morphology predicted by the model, and maps its lemma to the conventions of the treebank the model was trained on (for example εἶπον → λέγω). The greCy look-up table breaks ties and is used for words Morpheus does not know; proper nouns are then checked by the `propn_lemmatizer` component. The pipeline is:
+After having tested spaCy's built-in neural lemmatizer and lookup tables, I have decided to integrate into greCy, Morpheus, the Perseus morphological analyser, through [ikelos](https://github.com/jmyerston/ikelos), a pure-Python port. For each word the `morpheus_lemmatizer` component picks the Morpheus analysis that best fits the part of speech and morphology predicted by the model, and maps its lemma to the conventions of the treebank the model was trained on (for example εἶπον → λέγω). The greCy look-up table breaks ties and is used only for words Morpheus does not know; proper nouns are then checked by the `propn_lemmatizer` component. The pipeline is:
 
 ```
-... morphologizer, tagger, parser, lemmatizer (look-up), morpheus_lemmatizer, propn_lemmatizer ...
+... morphologizer, tagger, parser, morpheus_lemmatizer, lemmatizer (look-up), propn_lemmatizer ...
 ```
-
-Lemma accuracy of `grc_proiel_trf`, version 3.8 (look-up lemmatizer) compared with 3.8.2 (Morpheus): each model's full pipeline with its own predicted POS and morphology, on the gold tokens of greCy's UD PROIEL dev and test sets, punctuation excluded. The gold lemmata include greCy's corrections.
-
-| `grc_proiel_trf` | tokens | 3.8 | 3.8.2 |
-|---|---:|---:|---:|
-| PROIEL dev | 13,652 | 97.76 | **98.18** |
-| PROIEL test | 13,314 | 98.11 | **98.23** |
 
 The small (`_sm`) models do not use Morpheus: they lemmatize with the look-up table and the `propn_lemmatizer` only, and do not need ikelos.
 
