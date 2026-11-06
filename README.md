@@ -25,7 +25,7 @@ For most annotation work, `grc_proiel_trf` is a better choice than a general-pur
 After having tested spaCy's built-in neural lemmatizer and lookup tables, I have decided to integrate into greCy, Morpheus, the Perseus morphological analyser, through [ikelos](https://github.com/jmyerston/ikelos), a pure-Python port. For each word the `morpheus_lemmatizer` component picks the Morpheus analysis that best fits the part of speech and morphology predicted by the model, and maps its lemma to the conventions of the treebank the model was trained on (for example εἶπον → λέγω). The greCy look-up table breaks ties and is used only for words Morpheus does not know; proper nouns are then checked by the `propn_lemmatizer` component. The pipeline is:
 
 ```
-... morphologizer, tagger, parser, morpheus_lemmatizer, lemmatizer (look-up), propn_lemmatizer ...
+... morphologizer, tagger, parser, lemmatizer (look-up), morpheus_lemmatizer, propn_lemmatizer ...
 ```
 
 The small (`_sm`) models do not use Morpheus: they lemmatize with the look-up table and the `propn_lemmatizer` only, and do not need ikelos.
@@ -35,7 +35,7 @@ ikelos and the Morpheus stem library it bundles are licensed under MPL-2.0.
 
 ### Installation
 
-The `grecy` installer, which had been deprecated, has been restored. It needs Python 3.10 or later. First install it from [PyPI](https://pypi.org/project/grecy/):
+The `grecy` installer, which had been deprecated, has been restored. It needs Python 3.10 or later, and the transformer models (`_trf`) currently need Python 3.13 or earlier because of `spacy-transformers`; the other models also work on Python 3.14. First install it from [PyPI](https://pypi.org/project/grecy/):
 
 ``` bash
 pip install -U grecy
@@ -57,7 +57,7 @@ by replacing MODEL with its name:
 python -m grecy install MODEL
 ```
 
-The installer downloads the most recent version of the model from the [Releases page](https://github.com/jmyerston/greCy/releases) and installs it in the Python environment that runs the command. The transformer models (_trf) currently need Python 3.13 or earlier; the other models also work on Python 3.14.
+The installer downloads the most recent version of the model from the [Releases page](https://github.com/jmyerston/greCy/releases) and installs it in the Python environment that runs the command.
 
 To remove a model:
 
