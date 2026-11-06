@@ -1,5 +1,24 @@
-This license covers greCy's code. The treebanks, other data and trained models
-have their own licenses: see the License section of README.md.
+greCy's parts have different licenses, because its training data do:
+
+Code (scripts/, configs/, project.yml)   MIT, below
+grc_proiel_* models (from 3.8.2)         CC BY-NC-SA 4.0
+grc_perseus_* models (from 3.8.2)        CC BY-NC-SA 4.0
+grc_ner_trf model (from 3.8.2)           CC BY-SA 4.0
+UD Ancient Greek PROIEL treebank and     CC BY-NC-SA 3.0
+  its corpora                            (assets/UD_Ancient_Greek-PROIEL/LICENSE.txt)
+UD Ancient Greek Perseus treebank and    CC BY-NC-SA 2.5
+  its corpora                            (assets/UD_Ancient_Greek-Perseus/LICENSE.txt)
+NEReus NER corpus                        CC BY-SA 4.0
+  (https://github.com/jmyerston/NEReus)
+Floret vectors used to train the large   CC BY 4.0
+  models (https://zenodo.org/record/5733373)
+
+CC BY-NC-SA 4.0: https://creativecommons.org/licenses/by-nc-sa/4.0/
+CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/
+
+The PROIEL and Perseus models can't be used commercially, because their
+treebanks don't allow it. ikelos and Morpheus are a separate dependency under
+MPL-2.0.
 
 MIT License
 

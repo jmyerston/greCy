@@ -3,7 +3,7 @@ description: "This project trains seven spaCy models using the ancient Greek Uni
 email: "jmyerston@ucsd.edu"
 source: "https://universaldependencies.org/"
 vars:
-  # code is MIT (LICENSE); these are the licenses of the trained models, see README.md
+  # code is MIT; these are the licenses of the trained models, see LICENSE
   license_models: "CC-BY-NC-SA-4.0"
   license_ner: "CC-BY-SA-4.0"
   author: "Jacobo Myerston"
@@ -29,13 +29,13 @@ vars:
   # commit of https://github.com/jmyerston/NEReus that preprocess downloads
   nereus_ref: "78060df3660d1677d381cbf4270f41e21b51123a"
 
-  package_version: 3.8.18a1
+  package_version: 3.8.2
   # the large and transformer models require ikelos from PyPI
   ikelos_req: "ikelos>=0.1.0.dev1"
   # transformer weights are saved without embeddings.position_ids (transformers >= 4.31)
   transformers_req: "transformers>=4.31.0,<4.50.0"
   # extra flags for `gh release create` (empty for a final release)
-  release_flags: "--prerelease"
+  release_flags: ""
   gpu: 0
 
 # These are the directories that the project needs. The project CLI will make

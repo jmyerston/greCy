@@ -15,12 +15,12 @@ The main lemmatizer is Morpheus, the Perseus morphological analyser, through [ik
 ... morphologizer, tagger, parser, lemmatizer (look-up), morpheus_lemmatizer, propn_lemmatizer ...
 ```
 
-Lemma accuracy of `grc_proiel_trf`, the released version 3.8 (look-up lemmatizer) compared with the experimental 3.8.18a1 (Morpheus): each model's full pipeline with its own predicted POS and morphology, on the gold tokens of greCy's UD PROIEL dev and test sets, punctuation excluded. The gold lemmata include greCy's corrections.
+Lemma accuracy of `grc_proiel_trf`, version 3.8 (look-up lemmatizer) compared with 3.8.2 (Morpheus): each model's full pipeline with its own predicted POS and morphology, on the gold tokens of greCy's UD PROIEL dev and test sets, punctuation excluded. The gold lemmata include greCy's corrections.
 
-| `grc_proiel_trf` | tokens | 3.8 | 3.8.18a1 |
+| `grc_proiel_trf` | tokens | 3.8 | 3.8.2 |
 |---|---:|---:|---:|
-| PROIEL dev | 13,652 | 97.90 | **97.97** |
-| PROIEL test | 13,314 | 98.14 | **98.22** |
+| PROIEL dev | 13,652 | 97.76 | **98.18** |
+| PROIEL test | 13,314 | 98.11 | **98.23** |
 
 The small (`_sm`) models do not use Morpheus: they lemmatize with the look-up table and the `propn_lemmatizer` only, and do not need ikelos.
 
@@ -107,20 +107,7 @@ Unfortunaly, there is no consensus among the different internet projects that of
 
 ### License
 
-greCy's parts have different licenses, because its training data do:
-
-| Part | License |
-|---|---|
-| Code (`scripts/`, `configs/`, `project.yml`) | [MIT](LICENSE) |
-| `grc_proiel_*` models (from 3.8.18a1) | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
-| `grc_perseus_*` models (from 3.8.18a1) | [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) |
-| `grc_ner_trf` model (from 3.8.18a1) | [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/) |
-| [UD Ancient Greek PROIEL](assets/UD_Ancient_Greek-PROIEL/LICENSE.txt) treebank and its corpora | CC BY-NC-SA 3.0 |
-| [UD Ancient Greek Perseus](assets/UD_Ancient_Greek-Perseus/LICENSE.txt) treebank and its corpora | CC BY-NC-SA 2.5 |
-| [NEReus](https://github.com/jmyerston/NEReus) NER corpus | CC BY-SA 4.0 |
-| [Floret vectors](https://zenodo.org/record/5733373) used to train the large models | CC BY 4.0 |
-
-The PROIEL and Perseus models can't be used commercially, because their treebanks don't allow it. ikelos and Morpheus are a separate dependency under MPL-2.0.
+The code, models and data have different licenses: see [LICENSE](LICENSE). The PROIEL and Perseus models can't be used commercially, because their treebanks don't allow it.
 
 ### Building
 
